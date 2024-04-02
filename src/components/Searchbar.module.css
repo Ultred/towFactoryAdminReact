@@ -1,0 +1,31 @@
+.searchContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  background: var(--status-light-blue);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+.searchIcon {
+  position: absolute;
+  display: flex;
+  border-radius: 0 2rem 2rem 0;
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  width: 3rem;
+  background: var(--primary-color);
+  height: 100%;
+  cursor: pointer;
+  padding: 5px;
+}

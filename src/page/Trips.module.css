@@ -1,0 +1,40 @@
+.tripsContainer {
+  padding: 0.5rem 5.5rem 0.5rem 2.5rem;
+}
+.tripsDataContainer {
+  margin: 1.5rem auto;
+  max-width: 50rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
+}
+.tripsDataContainerTop {
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+}
+.tripsDataContainerBody {
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 1rem 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.tripsDataContainerBodyLeft {
+  margin-top: 0.5rem;
+}
+.tripsDataContainerBodyRight {
+}
+.flexDataContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.boldText {
+  font-weight: 700;
+}
+.tripsDataContainerBodyLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}

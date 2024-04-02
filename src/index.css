@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color Pallete */
+  --primary-color: #1c2cbc;
+  --lightBlue: #a2c7e3;
+  --accent-color: #ffed03;
+  --white: #fffafa;
+  --black: #1b1b1b;
+  --red: #d41327;
+
+  /* Status Palete */
+  --status-gray: #6a7b83;
+  --status-light-blue: #e6eced;
+  --status-darkyellow: #eb9f03;
+  --status-orange: #d84e00;
+  --status-green: #2b762a;
+  --blue-secondary: #1c2cbc;
+
+  /* Font */
+  --montserrat-font: "Montserrat", sans-serif;
+  --open-sans-font: "Open Sans", sans-serif;
+
+  /* others */
+  --border-radius: 2rem;
+  --border-radius-1: 1rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--montserrat-font);
+}
