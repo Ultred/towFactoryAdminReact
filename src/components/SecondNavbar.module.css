@@ -1,0 +1,16 @@
+.tripsNavberUl {
+  display: flex;
+  gap: 3.3rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+.tripsNavberLi {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.selected {
+  text-decoration: underline;
+  color: var(--primary-color);
+  font-weight: 700;
+}

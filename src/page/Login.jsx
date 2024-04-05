@@ -62,7 +62,7 @@ const Login = () => {
               <p className={styles.forgetP}>Forgot Password</p>
             </Link>
           </div>
-          <Button buttonStyle={"primary"} type={"submit"} onClick={handleLogin}>
+          <Button style={"primary"} onClick={handleLogin}>
             Log in
           </Button>
 

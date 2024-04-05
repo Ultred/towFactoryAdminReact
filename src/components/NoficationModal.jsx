@@ -1,20 +1,21 @@
+import Button from "./Button";
 import styles from "./NotificationModal.module.css";
 const NoficationModal = () => {
   return (
     <div className={styles.notificationModalContainer}>
       <div className={styles.notificationModalTop}>
-        <h2>Booking</h2>
-        <p>View all Details</p>
+        <h2 className={styles.notificationModalh2}>Booking</h2>
+        <p className={styles.notificationModalviewDetails}>View all Details</p>
       </div>
       <div className={styles.notificationModalData}>
         <p>
-          STATUS: <span>On Cheking</span>
+          STATUS: <span>-</span>
         </p>
         <p>
-          CLIENT: <span>Juan Dela Cruz</span>
+          CLIENT: <span className={styles.boldtext}>Juan Dela Cruz</span>
         </p>
         <p>
-          PHONE: <span>09123456789</span>
+          PHONE: <span className={styles.boldtext}>09123456789</span>
         </p>
       </div>
       <div className={styles.notificationModalLocation}>
@@ -26,6 +27,10 @@ const NoficationModal = () => {
           <img src="/src/assets/dropOffred.svg" alt="" />
           <p>Espana, Manila City, Metro Manila, Philippines</p>
         </div>
+      </div>
+      <div className={styles.notificationModalButtons}>
+        <Button buttonStyle={"secondary"}>Back</Button>
+        <Button buttonStyle={"primary"}>Assign Driver</Button>
       </div>
     </div>
   );
