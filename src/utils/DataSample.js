@@ -17,6 +17,12 @@ export const transitData = [
     manufacturer: "Honda",
     plateNumber: "ABC 123",
   },
+  {
+    trackingNumber: "number sample",
+    client: "client sample",
+    manufacturer: "Honda",
+    plateNumber: "ABC 123",
+  },
 ];
 
 export const driverData = [

@@ -1,5 +1,7 @@
+import styles from "./Schedule.module.css";
+
 const Schedule = () => {
-  return <div>Schedule</div>;
+  return <div className={styles.scheduleContainer}>Schedule</div>;
 };
 
 export default Schedule;

@@ -28,6 +28,7 @@
   /* others */
   --border-radius: 2rem;
   --border-radius-1: 1rem;
+  --padding-container: 0.5rem 2.5rem 0.5rem 2.5rem;
 }
 * {
   margin: 0;

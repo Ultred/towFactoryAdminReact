@@ -93,11 +93,11 @@ const Dashboard = () => {
                   <span className={styles.scheduleContainerBold}>ABC 124</span>
                 </p>
                 <div className={styles.flexAlign}>
-                  <img src="/src/assets/dropOff.svg" alt="" />
+                  <img src="/src/assets/pickupBlue.svg" alt="" />
                   <p>Dropoff Location Sample</p>
                 </div>
                 <div className={styles.flexAlign}>
-                  <img src="/src/assets/pickUp.svg" alt="" />
+                  <img src="/src/assets/dropOffred.svg" alt="" />
                   <p>PickUp Location Sample</p>
                 </div>
               </div>
@@ -109,6 +109,43 @@ const Dashboard = () => {
                   <p>Cannot Start The Vehicle</p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className={styles.dashboardContainerBg}>
+            <div className={styles.flexJustify}>
+              <h2 className={styles.containerTitle}>In Transit</h2>
+              <p className={styles.containerViewAll}>View all</p>
+            </div>
+            <div className={styles.slider}>
+              {transitData.map((data, index) => (
+                <div className={styles.transitData} key={index}>
+                  <div className={styles.transitDataTop}>
+                    <h2>
+                      Tracking Number: <span>{data.trackingNumber}</span>
+                    </h2>
+                  </div>
+                  <div className={styles.transitDataBody}>
+                    <p>
+                      CLIENT:
+                      <span className={styles.scheduleContainerBold}>
+                        {data.client}
+                      </span>
+                    </p>
+                    <p>
+                      MANUFACTURER:
+                      <span className={styles.scheduleContainerBold}>
+                        {data.manufacturer}
+                      </span>
+                    </p>
+                    <p>
+                      PLATE NUMBER:
+                      <span className={styles.scheduleContainerBold}>
+                        {data.plateNumber}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -145,51 +182,6 @@ const Dashboard = () => {
               <p>In Transit</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.dashboardContainerBg}>
-        <div className={styles.flexJustify}>
-          <h2 className={styles.containerTitle}>In Transit</h2>
-          <p className={styles.containerViewAll}>View all</p>
-        </div>
-        <div className={styles.slider}>
-          {transitData.map((data, index) => (
-            <div className={styles.transitData} key={index}>
-              <div className={styles.transitDataTop}>
-                <h2>
-                  Tracking Number: <span>{data.trackingNumber}</span>
-                </h2>
-              </div>
-              <div className={styles.transitDataBody}>
-                <p>
-                  CLIENT:
-                  <span className={styles.scheduleContainerBold}>
-                    {data.client}
-                  </span>
-                </p>
-                <p>
-                  MANUFACTURER:
-                  <span className={styles.scheduleContainerBold}>
-                    {data.manufacturer}
-                  </span>
-                </p>
-                <p>
-                  PLATE NUMBER:
-                  <span className={styles.scheduleContainerBold}>
-                    {data.plateNumber}
-                  </span>
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div
-        className={`${styles.dashboardContainerBg} ${styles.additionalMarginTop}`}
-      >
-        <div className={styles.flexJustify}>
-          <h2 className={styles.containerTitle}>On Checking</h2>
-          <p className={styles.containerViewAll}>View all</p>
         </div>
       </div>
     </div>

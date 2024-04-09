@@ -7,6 +7,7 @@ import Drivers from "./page/Drivers";
 import History from "./page/History";
 import Schedule from "./page/Schedule";
 import Trips from "./page/Trips";
+import Profile from "./page/Profile";
 
 //Layout
 import AppLayout from "./layout/AppLayout";
@@ -39,6 +40,10 @@ function App() {
         {
           path: "/trips",
           element: <Trips />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
       ],
     },

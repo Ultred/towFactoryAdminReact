@@ -27,3 +27,28 @@
   text-align: center;
   border: 1px solid var(--primary-color);
 }
+.tertiary {
+  background-color: var(--white) !important;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  color: #d41327;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+  border: 1px solid #d41327;
+}
+.quaternary {
+  background-color: var(--primary-color) !important;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  color: var(--white);
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+}

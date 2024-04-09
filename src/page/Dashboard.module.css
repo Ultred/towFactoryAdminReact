@@ -1,5 +1,5 @@
 .dashboardContainer {
-  padding: 0.5rem 5.5rem 0.5rem 2.5rem;
+  padding: var(--padding-container);
 }
 .slider {
   display: flex;
@@ -46,7 +46,7 @@
 }
 .gridContainer {
   display: grid;
-  grid-template-columns: minmax(65%, auto) repeat(1, 1fr);
+  grid-template-columns: minmax(70%, 60%) 1fr;
   grid-template-rows: 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
