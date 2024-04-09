@@ -7,29 +7,6 @@ import { transitData, driverData } from "../utils/DataSample";
 const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
-      <div className={styles.iconFloatLeft}>
-        <div className={styles.circleStyle}>
-          <img
-            className={styles.icon}
-            src="/src/assets/callIcon.svg"
-            alt="call"
-          />
-        </div>
-        <div className={styles.circleStyle}>
-          <img
-            className={styles.icon}
-            src="/src/assets/messagesIcon.svg"
-            alt="messages"
-          />
-        </div>
-        <div className={styles.circleStyleBlue}>
-          <img
-            className={styles.icon}
-            src="/src/assets/uprightIcon.svg"
-            alt="messages"
-          />
-        </div>
-      </div>
       <div className={styles.flexJustify}>
         <CurrentDate />
         <div className={styles.search}>

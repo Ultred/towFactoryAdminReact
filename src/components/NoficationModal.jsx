@@ -9,9 +9,6 @@ const NoficationModal = () => {
       </div>
       <div className={styles.notificationModalData}>
         <p>
-          STATUS: <span>-</span>
-        </p>
-        <p>
           CLIENT: <span className={styles.boldtext}>Juan Dela Cruz</span>
         </p>
         <p>
@@ -28,9 +25,13 @@ const NoficationModal = () => {
           <p>Espana, Manila City, Metro Manila, Philippines</p>
         </div>
       </div>
+      <div className={styles.flexTotal}>
+        <h2 className={styles.fontBoldh}>Total Amount:</h2>
+        <p className={styles.fontBlueP}>P10000</p>
+      </div>
       <div className={styles.notificationModalButtons}>
-        <Button buttonStyle={"secondary"}>Back</Button>
-        <Button buttonStyle={"primary"}>Assign Driver</Button>
+        <Button buttonStyle={"secondary"}>Reject</Button>
+        <Button buttonStyle={"primary"}>Accept</Button>
       </div>
     </div>
   );

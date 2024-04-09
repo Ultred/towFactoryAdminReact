@@ -1,6 +1,7 @@
 .notificationModalContainer {
   border-radius: var(--border-radius);
   max-width: 546px;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
 }
 
 .notificationModalTop {
@@ -37,8 +38,22 @@
 .boldtext {
   font-weight: 700;
 }
+.fontBoldh {
+  font-weight: 700;
+}
+.fontBlueP {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
 .flexNotif {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+.flexTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0.8rem 0.8rem 0.8rem -2rem;
 }

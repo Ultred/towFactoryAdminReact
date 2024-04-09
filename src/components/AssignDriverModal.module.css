@@ -1,0 +1,21 @@
+.assignDriverModalContainer {
+  border-radius: var(--border-radius);
+  max-width: 546px;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
+}
+.assignDriverModalTop {
+  display: flex;
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+.assignDriverModalh2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.assignDriverModalBody {
+  padding: 1rem;
+}
