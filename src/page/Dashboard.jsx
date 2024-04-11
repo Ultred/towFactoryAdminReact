@@ -4,6 +4,7 @@ import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { FaCloudSun } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import { transitData, driverData } from "../utils/DataSample";
+import Avatar from "../components/Avatar";
 const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
@@ -143,7 +144,7 @@ const Dashboard = () => {
               {driverData.map((driver, index) => (
                 <div className={styles.driverSlideContent} key={index}>
                   <div>
-                    <img src={driver.driverPicture} alt="" />
+                    <Avatar status={driver.status} />
                   </div>
                   <h3 className={styles.containerBold}>{driver.name}</h3>
                   <p className={styles.driverFontsmall}>{driver.status}</p>
