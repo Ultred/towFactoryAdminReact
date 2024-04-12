@@ -7,32 +7,23 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
       onClick();
     }
   };
-  const renderStyle = (style) => {
-    switch (style) {
-      case "primary":
-        return styles.primary;
-      case "secondary":
-        return styles.secondary;
-      case "tertiary":
-        return styles.tertiary;
-      case "quaternary":
-        return styles.quaternary;
-      default:
-        return styles.primary;
-      // Add other cases to customize style
-    }
-  };
 
   const renderIcon = (icon) => {
     switch (icon) {
       case "uphill":
         return "/src/assets/uphill.svg";
+      case "check":
+        return "/src/assets/checkIcon.svg";
+      case "cross":
+        return "/src/assets/crossiconWhite.svg";
+      default:
+        return null;
     }
   };
 
   return (
     <button
-      className={renderStyle(buttonStyle)}
+      className={`${styles.button} ${styles[buttonStyle]}`}
       onClick={handleClick}
       type={type}
     >

@@ -143,9 +143,7 @@ const Dashboard = () => {
             <div className={styles.slider}>
               {driverData.map((driver, index) => (
                 <div className={styles.driverSlideContent} key={index}>
-                  <div>
-                    <Avatar status={driver.status} />
-                  </div>
+                  <Avatar status={driver.status} />
                   <h3 className={styles.containerBold}>{driver.name}</h3>
                   <p className={styles.driverFontsmall}>{driver.status}</p>
                 </div>
@@ -155,9 +153,9 @@ const Dashboard = () => {
               <h2 className={styles.containerTitle}>Driver(Not Available)</h2>
             </div>
             <div>
-              <img src="/src/assets/driverPic2.svg" alt="" />
+              <Avatar status="notAvailable" />
               <h3>Juan</h3>
-              <p>In Transit</p>
+              <p>Not Available</p>
             </div>
           </div>
         </div>

@@ -1,6 +1,15 @@
 import styles from "./AssignDriverModal.module.css";
+import { driverData } from "../utils/DataSample";
 import { FaXmark } from "react-icons/fa6";
+import Avatar from "./Avatar";
+import Button from "./Button";
+import { useState } from "react";
 const AssignDriverModal = () => {
+  const [selectedDriver, setSelectedDriver] = useState(null);
+
+  const handleDriverSelect = (id) => {
+    setSelectedDriver(id);
+  };
   return (
     <div className={styles.assignDriverModalContainer}>
       <div className={styles.assignDriverModalTop}>
@@ -8,9 +17,50 @@ const AssignDriverModal = () => {
         <FaXmark />
       </div>
       <div className={styles.assignDriverModalBody}>
-        <div>
-          <h2>Drivers Name</h2>
+        <div className={styles.flexTopData}>
+          <h2 className={styles.flexTopDatah2}>Driver&apos;s Name</h2>
+          <div className={styles.flexSortby}>
+            <p>Sort by: </p>
+            <select name="" id="">
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+          </div>
         </div>
+
+        {driverData.map((data) => (
+          <div
+            className={`${styles.containerDriverBody} ${
+              selectedDriver === data.id ? styles.active : ""
+            }`}
+            key={data.id}
+            onClick={() => handleDriverSelect(data.id)}
+          >
+            <div className={styles.containerDriverPicandName}>
+              <Avatar status={data.status} />
+              <div>
+                <h2 className={styles.containerDriverPicandNameh2}>
+                  {data.name}
+                </h2>
+                <p className={styles.containerDriverPicandNameP}>
+                  {data.status}
+                </p>
+              </div>
+            </div>
+            <button className={styles.buttonCall}>
+              <img src="/src/assets/callIcon.svg" alt="call" />
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className={styles.assignDriverModalBottom}>
+        <Button icon={"cross"} buttonStyle={"buttonCustom1"}>
+          Cancel
+        </Button>
+        <Button icon={"check"} buttonStyle={"secondary"}>
+          Assign Driver
+        </Button>
       </div>
     </div>
   );
