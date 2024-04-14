@@ -1,4 +1,5 @@
 import AssignDriverModal from "../components/AssignDriverModal";
+import BookingInfoModal from "../components/BookingInfoModal";
 import CardData from "../components/CardData";
 import NoficationModal from "../components/NoficationModal";
 import RejectionNotifModal from "../components/RejectionNotifModal";
@@ -16,6 +17,7 @@ const Trips = () => {
         <NoficationModal />
         <RejectionNotifModal />
         <AssignDriverModal />
+        <BookingInfoModal />
       </div>
     </>
   );

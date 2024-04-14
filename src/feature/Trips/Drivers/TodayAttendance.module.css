@@ -1,0 +1,43 @@
+.TodayAttendanceCont {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.flexTopData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.flexTopDatah2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--black);
+}
+.flexSortby {
+  display: flex;
+  align-items: center;
+}
+.containerDriverBody {
+  padding: 0.5rem;
+  background: var(--status-light-blue);
+  border-radius: var(--border-radius-1);
+}
+.containerDriverFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.flexDriverPicandName {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.containerDriverPicandNameh2 {
+}
+.containerDriverPicandNameP {
+}
+.flexButton {
+}
+.buttonClick {
+}

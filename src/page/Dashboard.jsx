@@ -5,6 +5,8 @@ import { FaCloudSun } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import { transitData, driverData } from "../utils/DataSample";
 import Avatar from "../components/Avatar";
+import Calendar from "react-calendar";
+import "./Calendar.css";
 const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
@@ -133,7 +135,9 @@ const Dashboard = () => {
               <h2 className={styles.containerTitle}>Calendar</h2>
               <p className={styles.containerViewAll}>View all</p>
             </div>
-            <div>Calendar Component</div>
+            <div>
+              <Calendar />
+            </div>
           </div>
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>

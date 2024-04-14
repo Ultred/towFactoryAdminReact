@@ -1,0 +1,77 @@
+.bookingInfocontainer {
+  border-radius: var(--border-radius);
+  max-width: 546px;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
+}
+.bookingInfoTop {
+  display: flex;
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+.bookingInfoToph2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.bookingInfoBody1 {
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--status-light-blue);
+}
+.driverCirclePic {
+}
+.flexInputContainer {
+}
+.flexInput {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.flexInput p {
+}
+.fontLight {
+}
+.flexButtonsContainer {
+  display: grid;
+}
+.bookingInfobutton {
+  border-radius: 999px;
+  padding: 0.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: var(--white);
+  box-shadow: 0px 1px 1px 2px rgba(83, 83, 83, 0.25);
+}
+.bookingInfobutton img {
+  width: 100%;
+  height: 100%;
+}
+
+.bookingInfoBody2 {
+  padding: 1rem 0.5rem;
+}
+.bookingInfoBodyP {
+  margin-bottom: 0.6rem;
+}
+.bookingInfoBody3 {
+  padding: 1rem 0.5rem;
+}
+.bookingInfoBody3Flex {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.bookingInfoBody3Flex img {
+  height: 2.1rem;
+  width: 2.1rem;
+}
