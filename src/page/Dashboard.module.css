@@ -214,10 +214,13 @@
   margin-bottom: 1rem;
 }
 .driverSlideContent {
-  max-width: 4rem;
+  text-align: center;
+  width: 76px;
 }
 .driverFontsmall {
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: var(--status-gray);
 }
 
 @media (max-width: 870px) {

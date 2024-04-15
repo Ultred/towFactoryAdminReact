@@ -140,6 +140,7 @@
 
 .react-calendar__tile--hasActive {
   background: #1827a7;
+  color: white;
 }
 
 .react-calendar__tile--hasActive:enabled:hover,

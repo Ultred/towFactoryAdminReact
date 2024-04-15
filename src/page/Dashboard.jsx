@@ -156,10 +156,12 @@ const Dashboard = () => {
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>Driver(Not Available)</h2>
             </div>
-            <div>
-              <Avatar status="notAvailable" />
-              <h3>Juan</h3>
-              <p>Not Available</p>
+            <div className={styles.slider}>
+              <div className={styles.driverSlideContent}>
+                <Avatar status="notAvailable" />
+                <h3 className={styles.containerBold}>Juan</h3>
+                <p className={styles.driverFontsmall}>Not Available</p>
+              </div>
             </div>
           </div>
         </div>
