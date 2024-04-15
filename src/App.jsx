@@ -11,7 +11,13 @@ import Profile from "./page/Profile";
 
 //Layout
 import AppLayout from "./layout/AppLayout";
+
+//StateModal
+import { ModalStoreState } from "./context/ModalStoreState";
+import ModalMain from "./components/ModalMain";
+
 function App() {
+  const { isOpen, modalComponent } = ModalStoreState();
   const router = createBrowserRouter([
     {
       path: "*",
@@ -48,7 +54,14 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+
+  return (
+    <>
+      {/* Modal Show Logic */}
+      {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

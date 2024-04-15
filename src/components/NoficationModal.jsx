@@ -1,6 +1,18 @@
+import { ModalStoreState } from "../context/ModalStoreState";
+import AssignDriverModal from "./AssignDriverModal";
 import Button from "./Button";
 import styles from "./NotificationModal.module.css";
+import RejectionNotifModal from "./RejectionNotifModal";
 const NoficationModal = () => {
+  const { openModal } = ModalStoreState();
+
+  const handleShowRejectModal = () => {
+    openModal(<RejectionNotifModal />);
+  };
+
+  const handleShowAssignDriverModal = () => {
+    openModal(<AssignDriverModal />);
+  };
   return (
     <div className={styles.notificationModalContainer}>
       <div className={styles.notificationModalTop}>
@@ -30,8 +42,12 @@ const NoficationModal = () => {
         <p className={styles.fontBlueP}>P10000</p>
       </div>
       <div className={styles.notificationModalButtons}>
-        <Button buttonStyle={"secondary"}>Reject</Button>
-        <Button buttonStyle={"primary"}>Accept</Button>
+        <Button onClick={handleShowRejectModal} buttonStyle={"secondary"}>
+          Reject
+        </Button>
+        <Button onClick={handleShowAssignDriverModal} buttonStyle={"primary"}>
+          Accept
+        </Button>
       </div>
     </div>
   );
