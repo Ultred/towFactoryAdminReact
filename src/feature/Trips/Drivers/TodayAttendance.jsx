@@ -9,8 +9,8 @@ const TodayAttendance = () => {
         <h2 className={styles.flexTopDatah2}>Driver&apos;s Name</h2>
         <div className={styles.flexSortby}>
           <p>Sort by: </p>
-          <select name="" id="">
-            <option value="option1">Option 1</option>
+          <select className={styles.selectStyle} name="" id="">
+            <option value="option1">Name A-Z</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>

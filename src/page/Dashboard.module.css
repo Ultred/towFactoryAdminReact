@@ -5,6 +5,39 @@
   display: flex;
   gap: 1rem;
   overflow-y: auto;
+  min-height: 100px;
+  scrollbar-width: thin;
+  border-radius: 6px;
+  padding-bottom: 0.4rem;
+  scrollbar-color: #cacaca var(--white);
+}
+/* Webkit (Chrome, Safari) */
+.slider::-webkit-scrollbar {
+  width: 10px; /* You can adjust the width as needed */
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Firefox */
+.slider {
+}
+
+/* Opera */
+/* Blink (Opera) */
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
 }
 
 .flexJustify {

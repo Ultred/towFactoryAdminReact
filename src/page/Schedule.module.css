@@ -1,3 +1,11 @@
 .scheduleContainer {
   padding: var(--padding-container);
 }
+.scheduleContainer2 {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.scheduleContainer2h2 {
+  font-weight: 700;
+  font-size: 1rem;
+}

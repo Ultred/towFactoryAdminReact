@@ -47,4 +47,11 @@ export const driverData = [
     plateNumber: "ABC 123",
     driverPicture: "/src/assets/driverPic1.svg",
   },
+  {
+    id: 4,
+    name: "Juan4",
+    status: "Available",
+    plateNumber: "ABC 123",
+    driverPicture: "/src/assets/driverPic1.svg",
+  },
 ];
