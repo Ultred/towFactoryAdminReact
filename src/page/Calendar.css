@@ -1,5 +1,6 @@
 .react-calendar {
   width: 100%;
+  border: 2px solid var(--status-light-blue);
   text-decoration: none;
   max-width: 100%;
   background: white;

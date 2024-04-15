@@ -1,26 +1,55 @@
-import styles from "./CardData.module.css"; // Import your CSS styles
+import styles from "./CardData.module.css";
+import PropTypes from "prop-types";
+const CardData = ({
+  data: {
+    trackingNumber,
+    status,
+    client,
+    manufacturer,
+    plateNumber,
+    datePlaced,
+    dateScheduled,
+    pickUpLocation,
+    dropOffLocation,
+  },
+}) => {
+  let statusColorClass = "";
 
-const CardData = () => {
+  // Determine color based on status
+  switch (status.toUpperCase()) {
+    case "IN TRANSIT":
+      statusColorClass = styles.inTransit;
+      break;
+    case "CANCELLED":
+      statusColorClass = styles.cancelled;
+      break;
+    case "DELIVERED":
+      statusColorClass = styles.delivered;
+      break;
+    default:
+      statusColorClass = "";
+  }
   return (
     <div className={styles.cardDataContainer}>
-      <div className={styles.cardDataContainerTop}>
+      <div className={`${styles.cardDataContainerTop} ${statusColorClass}`}>
         <h2>
-          TRACKING NUMBER : <span>TF0123456789</span>
+          TRACKING NUMBER: <span>{trackingNumber}</span>
         </h2>
       </div>
       <div className={styles.cardDataContainerBody}>
         <div className={styles.cardDataContainerBodyLeft}>
           <p>
-            STATUS: <span>On Checking</span>
+            STATUS: <span>{status}</span>
           </p>
           <p>
-            CLIENT: <span className={styles.boldText}>Juan Dela Cruz</span>
+            CLIENT: <span className={styles.boldText}>{client}</span>
           </p>
           <p>
-            MANUFACTURER: <span className={styles.boldText}>HONDA</span>
+            MANUFACTURER:{" "}
+            <span className={styles.boldText}>{manufacturer}</span>
           </p>
           <p>
-            PLATE NUMBER: <span className={styles.boldText}>ABC 124</span>
+            PLATE NUMBER: <span className={styles.boldText}>{plateNumber}</span>
           </p>
         </div>
         <div className={styles.cardDataContainerBodyRight}>
@@ -28,20 +57,20 @@ const CardData = () => {
             <img src="/src/assets/date.svg" alt="" />
             <div>
               <p>
-                Date Placed: <span>March 13, 2024</span>
+                Date Placed: <span>{datePlaced}</span>
               </p>
               <p>
-                Date Scheduled: <span>March 20, 2024</span>
+                Date Scheduled: <span>{dateScheduled}</span>
               </p>
             </div>
           </div>
           <div className={styles.flexDataContainer}>
             <img src="/src/assets/pickUpblue.svg" alt="" />
-            <p>839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila</p>
+            <p>{pickUpLocation}</p>
           </div>
           <div className={styles.flexDataContainer}>
             <img src="/src/assets/dropOffred.svg" alt="" />
-            <p>Espana, Manila City, Metro Manila, Philippines</p>
+            <p>{dropOffLocation}</p>
           </div>
         </div>
       </div>
@@ -49,4 +78,18 @@ const CardData = () => {
   );
 };
 
+//PropTypes
+CardData.propTypes = {
+  data: PropTypes.shape({
+    trackingNumber: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    client: PropTypes.string.isRequired,
+    manufacturer: PropTypes.string.isRequired,
+    plateNumber: PropTypes.string.isRequired,
+    datePlaced: PropTypes.string.isRequired,
+    dateScheduled: PropTypes.string.isRequired,
+    pickUpLocation: PropTypes.string.isRequired,
+    dropOffLocation: PropTypes.string.isRequired,
+  }).isRequired,
+};
 export default CardData;

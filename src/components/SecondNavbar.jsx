@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styles from "./SecondNavbar.module.css";
 
-const SecondNavbar = ({ data }) => {
-  const [selectedItem, setSelectedItem] = useState(0);
+const SecondNavbar = ({ data, onItemClick }) => {
+  const [selectedItem, setSelectedItem] = useState(data[0]);
 
   const handleItemClick = (index) => {
     setSelectedItem(index);
-    console.log(selectedItem);
+    onItemClick(index);
   };
 
   return (
@@ -16,10 +16,10 @@ const SecondNavbar = ({ data }) => {
           {data.map((item, index) => (
             <li
               className={`${styles.tripsNavberLi} ${
-                selectedItem === index ? styles.selected : ""
+                selectedItem === item ? styles.selected : ""
               }`}
               key={index}
-              onClick={() => handleItemClick(index)}
+              onClick={() => handleItemClick(item)}
             >
               {item}
             </li>

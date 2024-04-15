@@ -1,6 +1,11 @@
+import { ModalStoreState } from "../context/ModalStoreState";
 import Button from "./Button";
 import styles from "./RejectionNotifModal.module.css";
 const RejectionNotifModal = () => {
+  const { closeModal } = ModalStoreState();
+  const handleAcceptReject = () => {
+    closeModal();
+  };
   return (
     <div className={styles.rejectionNotificationModalContainer}>
       <div className={styles.rejectionNotificationModalTop}>
@@ -18,8 +23,12 @@ const RejectionNotifModal = () => {
           rows="10"
         ></textarea>
         <div className={styles.rejectionNotifModalButtons}>
-          <Button buttonStyle={"secondary"}>Reject</Button>
-          <Button buttonStyle={"primary"}>Accept</Button>
+          <Button onClick={closeModal} buttonStyle={"secondary"}>
+            Reject
+          </Button>
+          <Button onClick={handleAcceptReject} buttonStyle={"primary"}>
+            Accept
+          </Button>
         </div>
       </div>
     </div>

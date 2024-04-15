@@ -1,6 +1,6 @@
 import styles from "./TodayAttendance.module.css";
-import { driverData } from "../../../utils/DataSample";
-import Avatar from "../../../components/Avatar";
+import { driverData } from "../../utils/DataSample";
+import Avatar from "../../components/Avatar";
 
 const TodayAttendance = () => {
   return (

@@ -3,18 +3,29 @@ import { driverData } from "../utils/DataSample";
 import { FaXmark } from "react-icons/fa6";
 import Avatar from "./Avatar";
 import Button from "./Button";
+import NoficationModal from "./NoficationModal";
 import { useState } from "react";
+import { ModalStoreState } from "../context/ModalStoreState";
+import BookingInfoModal from "./BookingInfoModal";
 const AssignDriverModal = () => {
+  const { openModal, closeModal } = ModalStoreState();
   const [selectedDriver, setSelectedDriver] = useState(null);
 
   const handleDriverSelect = (id) => {
     setSelectedDriver(id);
   };
+
+  const handleShowBookingInfoModal = () => {
+    openModal(<BookingInfoModal />);
+  };
+  const handleShowNotifModal = () => {
+    openModal(<NoficationModal />);
+  };
   return (
     <div className={styles.assignDriverModalContainer}>
       <div className={styles.assignDriverModalTop}>
         <h2 className={styles.assignDriverModalh2}>Assign Driver</h2>
-        <FaXmark />
+        <FaXmark onClick={closeModal} />
       </div>
       <div className={styles.assignDriverModalBody}>
         <div className={styles.flexTopData}>
@@ -55,10 +66,18 @@ const AssignDriverModal = () => {
         ))}
       </div>
       <div className={styles.assignDriverModalBottom}>
-        <Button icon={"cross"} buttonStyle={"buttonCustom1"}>
+        <Button
+          icon={"cross"}
+          onClick={handleShowNotifModal}
+          buttonStyle={"buttonCustom1"}
+        >
           Cancel
         </Button>
-        <Button icon={"check"} buttonStyle={"secondary"}>
+        <Button
+          onClick={handleShowBookingInfoModal}
+          icon={"check"}
+          buttonStyle={"secondary"}
+        >
           Assign Driver
         </Button>
       </div>
