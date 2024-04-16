@@ -108,3 +108,43 @@ export const tripsData = [
       "Bonifacio Global City, Taguig City, Metro Manila, Philippines",
   },
 ];
+export const scheduleData = [
+  {
+    id: 1,
+    trackingNumber: "TF0123456789",
+    status: "In transit",
+    client: "Juan Dela Cruz",
+    manufacturer: "HONDA",
+    plateNumber: "ABC 124",
+    datePlaced: "March 13, 2024",
+    dateScheduled: "March 20, 2024",
+    pickUpLocation:
+      "839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila",
+    dropOffLocation: "Espana, Manila City, Metro Manila, Philippines",
+  },
+  {
+    id: 2,
+    trackingNumber: "TF0234567890",
+    status: "In transit",
+    client: "Maria Santos",
+    manufacturer: "Toyota",
+    plateNumber: "XYZ 456",
+    datePlaced: "March 15, 2024",
+    dateScheduled: "March 22, 2024",
+    pickUpLocation: "123 Main St, Quezon City, Metro Manila, Philippines",
+    dropOffLocation: "Makati City, Metro Manila, Philippines",
+  },
+  {
+    id: 3,
+    trackingNumber: "TF0345678901",
+    status: "In transit",
+    client: "Pedro Morales",
+    manufacturer: "Ford",
+    plateNumber: "DEF 789",
+    datePlaced: "March 17, 2024",
+    dateScheduled: "March 24, 2024",
+    pickUpLocation: "456 Elm St, Pasig City, Metro Manila, Philippines",
+    dropOffLocation: "Alabang, Muntinlupa, Metro Manila, Philippines",
+  },
+  // Add more entries as needed
+];

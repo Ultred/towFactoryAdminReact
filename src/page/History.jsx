@@ -4,18 +4,32 @@ import { tripsData } from "../utils/DataSample";
 
 import "./Calendar.css";
 import CardData from "../components/CardData";
+import SecondNavbar from "../components/SecondNavbar";
+
+const TripsNavbarSampleData = ["ALL", "CLIENT 1", "CLIENT 2"];
 const History = () => {
+  const handleShowItemTrips = (data) => {
+    console.log(data);
+  };
   return (
-    <div className={styles.historyContainer}>
+    <>
       <div>
-        {tripsData.map((data) => (
-          <CardData key={data.id} data={data} />
-        ))}
+        <SecondNavbar
+          onItemClick={handleShowItemTrips}
+          data={TripsNavbarSampleData}
+        />
       </div>
-      <div>
-        <Calendar />
+      <div className={styles.historyContainer}>
+        <div>
+          {tripsData.map((data) => (
+            <CardData key={data.id} data={data} />
+          ))}
+        </div>
+        <div>
+          <Calendar />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
