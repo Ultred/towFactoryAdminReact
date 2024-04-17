@@ -1,0 +1,18 @@
+.historyDriverContainer {
+  display: flex;
+}
+.historyDriveCont1 {
+  width: 30%;
+}
+.historyDriveCont2 {
+  width: 70%;
+}
+.historyDriveCont1 h2 {
+  text-align: center;
+}
+.texth2Style {
+}
+.historyDriveFlex {
+  display: flex;
+  gap: 1rem;
+}

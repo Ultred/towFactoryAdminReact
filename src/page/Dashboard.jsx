@@ -5,6 +5,7 @@ import { FaCloudSun } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import { transitData, driverData } from "../utils/DataSample";
 import Avatar from "../components/Avatar";
+import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "./Calendar.css";
 const Dashboard = () => {
@@ -45,7 +46,9 @@ const Dashboard = () => {
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>Scheduled Today</h2>
-              <p className={styles.containerViewAll}>View all</p>
+              <Link to="/schedule">
+                <p className={styles.containerViewAll}>View all</p>
+              </Link>
             </div>
             <div className={styles.scheduleContainerTop}>
               <h2>Tracking Number TF12</h2>
@@ -94,7 +97,9 @@ const Dashboard = () => {
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>In Transit</h2>
-              <p className={styles.containerViewAll}>View all</p>
+              <Link to={"/dashboard"}>
+                <p className={styles.containerViewAll}>View all</p>
+              </Link>
             </div>
             <div className={styles.slider}>
               {transitData.map((data, index) => (
@@ -142,7 +147,9 @@ const Dashboard = () => {
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>Driver(Available)</h2>
-              <p className={styles.containerViewAll}>View all</p>
+              <Link to={"/drivers"}>
+                <p className={styles.containerViewAll}>View all</p>
+              </Link>
             </div>
             <div className={styles.slider}>
               {driverData.map((driver, index) => (

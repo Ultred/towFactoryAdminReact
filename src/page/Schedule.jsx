@@ -5,10 +5,16 @@ import { scheduleData } from "../utils/DataSample";
 const sampleDriverNavbarData = ["TODAY", "UPCOMING"];
 
 const Schedule = () => {
+  const handleScheduleShowItem = (index) => {
+    console.log(index);
+  };
   return (
     <>
       <div className={styles.scheduleContainer}>
-        <SecondNavbar data={sampleDriverNavbarData} />
+        <SecondNavbar
+          onItemClick={handleScheduleShowItem}
+          data={sampleDriverNavbarData}
+        />
         <div className={styles.scheduleContainer2}>
           <h2 className={styles.scheduleContainer2h2}>Schedule Today</h2>
           {scheduleData.map((schedule) => (

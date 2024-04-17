@@ -1,0 +1,18 @@
+.flexSortby {
+  display: flex;
+  align-items: center;
+}
+.selectStyle {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 0.8rem;
+  background: var(--status-light-blue);
+  padding: 0.4rem 0.5rem;
+  margin-left: 0.5rem;
+}
+.selectStyle option {
+  color: black;
+  background-color: var(--status-light-blue);
+}
