@@ -59,6 +59,7 @@ function App() {
     <>
       {/* Modal Show Logic */}
       {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+      {/* Router */}
       <RouterProvider router={router} />
     </>
   );

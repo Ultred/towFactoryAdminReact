@@ -1,5 +1,5 @@
-import { ModalStoreState } from "../context/ModalStoreState";
-import Button from "./Button";
+import { ModalStoreState } from "../../context/ModalStoreState";
+import Button from "../../components/Button";
 import styles from "./RejectionNotifModal.module.css";
 const RejectionNotifModal = () => {
   const { closeModal } = ModalStoreState();

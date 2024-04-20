@@ -1,6 +1,6 @@
-import { ModalStoreState } from "../context/ModalStoreState";
+import { ModalStoreState } from "../../context/ModalStoreState";
 import AssignDriverModal from "./AssignDriverModal";
-import Button from "./Button";
+import Button from "../../components/Button";
 import styles from "./NotificationModal.module.css";
 import RejectionNotifModal from "./RejectionNotifModal";
 const NoficationModal = () => {

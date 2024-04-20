@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import styles from "./Profile.module.css";
 import { LuLock } from "react-icons/lu";
 import { FaArrowLeft } from "react-icons/fa";
 import { GoEye } from "react-icons/go";
 const Profile = () => {
+  const navigate = useNavigate();
+
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingPass, setisChangingPass] = useState(false);
   const handleEditProfile = () => {
@@ -12,6 +15,9 @@ const Profile = () => {
   };
   const handleChangePass = () => {
     setisChangingPass((prev) => !prev);
+  };
+  const handleLogoutTestOnlyNavigate = () => {
+    navigate("/login");
   };
 
   return (
@@ -127,7 +133,12 @@ const Profile = () => {
               {isEditing ? (
                 <Button buttonStyle={"quaternary"}>Save Profile</Button>
               ) : (
-                <Button buttonStyle={"tertiary"}>Log out</Button>
+                <Button
+                  onClick={handleLogoutTestOnlyNavigate}
+                  buttonStyle={"tertiary"}
+                >
+                  Log out
+                </Button>
               )}
             </div>
           )}

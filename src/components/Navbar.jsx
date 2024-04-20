@@ -3,7 +3,7 @@ import styles from "../components/Navbar.module.css";
 import profileIcon from "../assets/profile-icon.png";
 import notificationIcon from "../assets/notifications.svg";
 import { ModalStoreState } from "../context/ModalStoreState";
-import NoficationModal from "./NoficationModal";
+import NoficationModal from "../feature/Notification/NoficationModal";
 
 const Navbar = () => {
   const { openModal } = ModalStoreState();

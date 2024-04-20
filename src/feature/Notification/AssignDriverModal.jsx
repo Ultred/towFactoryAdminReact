@@ -1,11 +1,12 @@
 import styles from "./AssignDriverModal.module.css";
-import { driverData } from "../utils/DataSample";
+import { driverData } from "../../utils/DataSample";
 import { FaXmark } from "react-icons/fa6";
-import Avatar from "./Avatar";
-import Button from "./Button";
+import Avatar from "../../components/Avatar";
+import Button from "../../components/Button";
 import NoficationModal from "./NoficationModal";
 import { useState } from "react";
-import { ModalStoreState } from "../context/ModalStoreState";
+import { ModalStoreState } from "../../context/ModalStoreState";
+import SortComponent from "../../components/SortComponent";
 import BookingInfoModal from "./BookingInfoModal";
 const AssignDriverModal = () => {
   const { openModal, closeModal } = ModalStoreState();
@@ -30,14 +31,7 @@ const AssignDriverModal = () => {
       <div className={styles.assignDriverModalBody}>
         <div className={styles.flexTopData}>
           <h2 className={styles.flexTopDatah2}>Driver&apos;s Name</h2>
-          <div className={styles.flexSortby}>
-            <p>Sort by: </p>
-            <select name="" id="">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </select>
-          </div>
+          <SortComponent />
         </div>
 
         {driverData.map((data) => (

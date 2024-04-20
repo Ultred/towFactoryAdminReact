@@ -1,3 +1,68 @@
 .DriverInfoContainer {
+  max-width: 546px;
+  width: 33rem;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
+}
+.bookingInfoTop {
+  display: flex;
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+.bookingInfoToph2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.bookingInfoBody1 {
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--status-light-blue);
+}
+.driverCirclePic {
+}
+.flexInputContainer {
+}
+.flexInput {
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.fontLight {
+  color: #8d8b8b;
+}
+.fontMainbold {
+  font-weight: 700;
+  font-size: 1.1rem;
+  outline: none;
+  width: 13rem;
+}
+.selectBg {
+  background-color: #d4d1de;
+  border-radius: 3px;
+  padding: 0.2rem;
+}
+.flexButtonsContainer {
   display: grid;
+}
+.bookingInfobutton {
+  border-radius: 999px;
+  padding: 0.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: var(--white);
+  box-shadow: 0px 1px 1px 2px rgba(83, 83, 83, 0.25);
+}
+.bookingInfobutton img {
+  width: 100%;
+  height: 100%;
 }
