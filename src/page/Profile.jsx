@@ -8,6 +8,7 @@ import { GoEye } from "react-icons/go";
 import toolTip from "../assets/tooltip.svg";
 import profileIcon from "../assets/profile-icon.png";
 import lockPass from "../assets/lockPass.svg";
+import PasswordField from "../components/PasswordField";
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -61,27 +62,21 @@ const Profile = () => {
           </div>
           {isChangingPass ? (
             <div className={styles.profileContainerChangePass}>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>Old Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>Old Password</h2>
+                <PasswordField id={"oldPassword"} />
               </div>
               <p className={styles.textLight}>
                 Your password today must be different from your previous
                 passwords.
               </p>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>New Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>New Password</h2>
+                <PasswordField name="password" id={"newPassword"} />
               </div>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>Retype Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>Retype Password</h2>
+                <PasswordField id={"retypePassword"} />
               </div>
               <Button buttonStyle={"quaternary"}>Save Password</Button>
             </div>

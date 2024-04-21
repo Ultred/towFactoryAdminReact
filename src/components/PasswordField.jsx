@@ -3,7 +3,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 import styles from "./PasswordField.module.css";
 
-const PasswordField = ({ label }) => {
+const PasswordField = ({ onChange, name, id }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -12,21 +12,22 @@ const PasswordField = ({ label }) => {
 
   return (
     <div className={styles.flexDivInput}>
-      <h2 className={styles.textPassLeft}>{label}</h2>
       <LuLock className={styles.iconLock} />
       <input
         className={styles.inputPass}
+        onChange={onChange}
         type={showPassword ? "text" : "password"}
-        name=""
-        id=""
+        name={name}
+        id={id}
       />
-      <span onClick={togglePasswordVisibility}>
-        {showPassword ? (
-          <GoEyeClosed className={styles.goeye} />
-        ) : (
-          <GoEye className={styles.goeye} />
-        )}
-      </span>
+      {showPassword ? (
+        <GoEyeClosed
+          onClick={togglePasswordVisibility}
+          className={styles.goeye}
+        />
+      ) : (
+        <GoEye onClick={togglePasswordVisibility} className={styles.goeye} />
+      )}
     </div>
   );
 };

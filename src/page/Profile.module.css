@@ -102,7 +102,15 @@
 .textPassLeft {
   text-align: left;
 }
-.flexDivInput {
+.marginTopBottom {
+  width: 25rem;
+  margin: 1.3rem auto;
+}
+.marginTopBottom h2 {
+  margin-bottom: 0.4rem;
+  text-align: left;
+}
+/* .flexDivInput {
   position: relative;
   max-width: 25rem;
   margin: 1rem auto;
@@ -127,4 +135,4 @@
   right: 3%;
   font-size: 1.3rem;
   top: 45%;
-}
+} */
