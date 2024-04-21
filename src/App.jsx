@@ -15,6 +15,7 @@ import AppLayout from "./layout/AppLayout";
 //StateModal
 import { ModalStoreState } from "./context/ModalStoreState";
 import ModalMain from "./components/ModalMain";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const { isOpen, modalComponent } = ModalStoreState();
@@ -58,8 +59,10 @@ function App() {
   return (
     <>
       {/* Modal Show Logic */}
-      {isOpen && <ModalMain>{modalComponent}</ModalMain>}
-      {/* Router */}
+      <AnimatePresence>
+        {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+        {/* Router */}
+      </AnimatePresence>
       <RouterProvider router={router} />
     </>
   );

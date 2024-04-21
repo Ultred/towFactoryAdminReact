@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ModalStoreState } from "../context/ModalStoreState";
 import styles from "./ModalMain.module.css";
 
@@ -9,9 +10,23 @@ const ModalMain = ({ children }) => {
     }
   };
   return (
-    <div onClick={handleOverlayClick} className={styles.modal_overlay}>
-      <div className={styles.modal}>{children}</div>
-    </div>
+    <>
+      <div onClick={handleOverlayClick} className={styles.modal_overlay}>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          transition={{
+            ease: "easeInOut",
+            duration: 0.2,
+            stiffness: 260,
+          }}
+          className={styles.modal}
+        >
+          {children}
+        </motion.div>
+      </div>
+    </>
   );
 };
 
