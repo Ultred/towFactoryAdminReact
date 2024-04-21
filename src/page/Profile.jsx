@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import styles from "./Profile.module.css";
 import { LuLock } from "react-icons/lu";
 import { FaArrowLeft } from "react-icons/fa";
 import { GoEye } from "react-icons/go";
+import toolTip from "../assets/tooltip.svg";
+import profileIcon from "../assets/profile-icon.png";
+import lockPass from "../assets/lockPass.svg";
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -45,13 +48,13 @@ const Profile = () => {
             {isChangingPass ? (
               <img
                 className={styles.profilePic}
-                src="/src/assets/lockPass.svg"
+                src={lockPass}
                 alt="profilePic"
               />
             ) : (
               <img
                 className={styles.profilePic}
-                src="/src/assets/profile-icon.png"
+                src={profileIcon}
                 alt="profilePic"
               />
             )}
@@ -121,7 +124,7 @@ const Profile = () => {
                 </div>
               </div>
               <div className={styles.flexprofileBodyNameTooltip}>
-                <img src="/src/assets/tooltip.svg" alt="tooltip" />
+                <img src={toolTip} alt="tooltip" />
                 <p className={styles.textLight}>
                   Your email will be used for sending a booking receipts and
                   updates of tow factory.

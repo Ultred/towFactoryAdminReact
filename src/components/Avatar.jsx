@@ -1,5 +1,5 @@
 import styles from "./Avatar.module.css";
-
+import driverProfile from "../assets/driverPic1.svg";
 const Avatar = ({ status }) => {
   let statusClass;
   switch (status) {
@@ -17,11 +17,7 @@ const Avatar = ({ status }) => {
   }
   return (
     <div className={styles.avatarContainer}>
-      <img
-        className={styles.avatarPic}
-        src="/src/assets/driverPic1.svg"
-        alt="avatar"
-      />
+      <img className={styles.avatarPic} src={driverProfile} alt="avatar" />
       <span className={`${styles.avatarStatus} ${statusClass}`}></span>
     </div>
   );

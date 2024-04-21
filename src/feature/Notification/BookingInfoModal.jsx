@@ -1,6 +1,11 @@
 import { FaXmark } from "react-icons/fa6";
 import styles from "./BookingInfoModal.module.css";
 import { FaCheck } from "react-icons/fa";
+import driverCircle from "../../assets/driverCircle.svg";
+import callIcon from "../../assets/callIcon.svg";
+import trackIcon from "../../assets/trackIcon.svg";
+import pickupBlue from "../../assets/pickUpblue.svg";
+import dropOffRed from "../../assets/dropOffred.svg";
 const BookingInfoModal = () => {
   return (
     <div className={styles.bookingInfocontainer}>
@@ -12,7 +17,7 @@ const BookingInfoModal = () => {
         <div className={styles.flex}>
           <img
             className={styles.driverCirclePic}
-            src="/src/assets/driverCircle.svg"
+            src={driverCircle}
             alt="driver"
           />
 
@@ -43,10 +48,10 @@ const BookingInfoModal = () => {
         </div>
         <div className={styles.flexButtonsContainer}>
           <button className={styles.bookingInfobutton}>
-            <img src="/src/assets/callIcon.svg" alt="call" />
+            <img src={callIcon} alt="call" />
           </button>
           <button className={styles.bookingInfobutton}>
-            <img src="/src/assets/trackIcon.svg" alt="track" />
+            <img src={trackIcon} alt="track" />
           </button>
         </div>
       </div>
@@ -64,14 +69,14 @@ const BookingInfoModal = () => {
         </div>
         <div className={styles.bookingInfoBody3}>
           <div className={styles.bookingInfoBody3Flex}>
-            <img src="/src/assets/pickUpblue.svg" alt="pickup" />
+            <img src={pickupBlue} alt="pickup" />
             <p>
               {" "}
               839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila{" "}
             </p>
           </div>
           <div className={styles.bookingInfoBody3Flex}>
-            <img src="/src/assets/dropOffred.svg" alt="dropOff" />
+            <img src={dropOffRed} alt="dropOff" />
             <p> Espana, Manila City, Metro Manila, Philippines </p>
           </div>
         </div>

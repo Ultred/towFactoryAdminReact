@@ -1,4 +1,8 @@
 import styles from "./InputField.module.css";
+import emailIcon from "../assets/email.svg";
+import passwordIcon from "../assets/password.svg";
+import dropoffIcon from "../assets/dropOff.svg";
+import pickupIcon from "../assets/pickUp.svg";
 
 const InputField = ({
   onChange,
@@ -20,17 +24,16 @@ const InputField = ({
   const renderIcon = (icon) => {
     switch (icon) {
       case "email":
-        return "/src/assets/email.svg";
+        return emailIcon;
       case "password":
-        return "/src/assets/password.svg";
+        return passwordIcon;
       case "dropoff":
-        return "/src/assets/dropoff.svg";
+        return dropoffIcon;
       case "pickUp":
-        return "/src/assets/pickup.svg";
+        return pickupIcon;
       default:
         return null;
     }
-    // Add other cases to customize icon
   };
 
   return (

@@ -1,4 +1,6 @@
 import styles from "./Button.module.css";
+import checkIcon from "../assets/checkIcon.svg";
+import crossIcon from "../assets/crossiconWhite.svg";
 
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const handleClick = (event) => {
@@ -10,12 +12,10 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
 
   const renderIcon = (icon) => {
     switch (icon) {
-      case "uphill":
-        return "/src/assets/uphill.svg";
       case "check":
-        return "/src/assets/checkIcon.svg";
+        return checkIcon;
       case "cross":
-        return "/src/assets/crossiconWhite.svg";
+        return crossIcon;
       default:
         return null;
     }

@@ -2,6 +2,8 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import AssignDriverModal from "./AssignDriverModal";
 import Button from "../../components/Button";
 import styles from "./NotificationModal.module.css";
+import dropOffRed from "../../assets/dropOffred.svg";
+import pickupBlue from "../../assets/pickUpblue.svg";
 import RejectionNotifModal from "./RejectionNotifModal";
 const NoficationModal = () => {
   const { openModal } = ModalStoreState();
@@ -29,11 +31,11 @@ const NoficationModal = () => {
       </div>
       <div className={styles.notificationModalLocation}>
         <div className={styles.flexNotif}>
-          <img src="/src/assets/pickUpblue.svg" alt="" />
+          <img src={pickupBlue} alt="pickup" />
           <p>839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila</p>
         </div>
         <div className={styles.flexNotif}>
-          <img src="/src/assets/dropOffred.svg" alt="" />
+          <img src={dropOffRed} alt="dropoff" />
           <p>Espana, Manila City, Metro Manila, Philippines</p>
         </div>
       </div>

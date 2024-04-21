@@ -3,7 +3,7 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { driverData } from "../../utils/DataSample";
 import styles from "./HistoryDriver.module.css";
 import SortComponent from "../../components/SortComponent";
-
+import driverProfilePic from "../../assets/driverPic1.svg";
 const HistoryDriver = () => {
   return (
     <div className={styles.historyDriverContainer}>
@@ -31,7 +31,7 @@ const HistoryDriver = () => {
         <div className={styles.contHistoryDriverMain}>
           <div className={styles.contDriverTop}>
             <span>Icon </span>
-            <img src="/src/assets/driverPic1.svg" alt="profileDriver" />
+            <img src={driverProfilePic} alt="profileDriver" />
           </div>
           <div className={styles.textMainCenter}>
             <h2 className={styles.texth2Large}>John Batumbakal</h2>

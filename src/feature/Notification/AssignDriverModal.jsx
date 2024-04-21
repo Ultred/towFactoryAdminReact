@@ -4,6 +4,7 @@ import { FaXmark } from "react-icons/fa6";
 import Avatar from "../../components/Avatar";
 import Button from "../../components/Button";
 import NoficationModal from "./NoficationModal";
+import callIcon from "../../assets/callIcon.svg";
 import { useState } from "react";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import SortComponent from "../../components/SortComponent";
@@ -54,7 +55,7 @@ const AssignDriverModal = () => {
               </div>
             </div>
             <button className={styles.buttonCall}>
-              <img src="/src/assets/callIcon.svg" alt="call" />
+              <img src={callIcon} alt="call" />
             </button>
           </div>
         ))}

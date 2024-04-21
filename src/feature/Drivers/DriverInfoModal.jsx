@@ -2,7 +2,8 @@ import { FaXmark } from "react-icons/fa6";
 import styles from "./DriverInfoModal.module.css";
 import Avatar from "../../components/Avatar";
 import { ModalStoreState } from "../../context/ModalStoreState";
-
+import callIcon from "../../assets/callIcon.svg";
+import trackIcon from "../../assets/trackIcon.svg";
 const DriverInfoModal = () => {
   const { closeModal } = ModalStoreState();
   const handleCloseModalX = () => {
@@ -53,10 +54,10 @@ const DriverInfoModal = () => {
         </div>
         <div className={styles.flexButtonsContainer}>
           <button className={styles.bookingInfobutton}>
-            <img src="/src/assets/callIcon.svg" alt="call" />
+            <img src={callIcon} alt="call" />
           </button>
           <button className={styles.bookingInfobutton}>
-            <img src="/src/assets/trackIcon.svg" alt="track" />
+            <img src={trackIcon} alt="track" />
           </button>
         </div>
       </div>

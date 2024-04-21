@@ -8,6 +8,9 @@ import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "./Calendar.css";
+import dashboardPic from "../assets/dashboardPic.svg";
+import dropOffRed from "../assets/dropOffred.svg";
+import pickupBlue from "../assets/pickUpblue.svg";
 const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
@@ -37,11 +40,7 @@ const Dashboard = () => {
                 <p>Sunny Weather</p>
               </div>
             </div>
-            <img
-              className={styles.imgstyles}
-              src="src/assets/dashboardPic.svg"
-              alt="admin"
-            />
+            <img className={styles.imgstyles} src={dashboardPic} alt="admin" />
           </div>
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>
@@ -76,11 +75,11 @@ const Dashboard = () => {
                   <span className={styles.scheduleContainerBold}>ABC 124</span>
                 </p>
                 <div className={styles.flexAlign}>
-                  <img src="/src/assets/pickupBlue.svg" alt="" />
+                  <img src={pickupBlue} alt="" />
                   <p>Dropoff Location Sample</p>
                 </div>
                 <div className={styles.flexAlign}>
-                  <img src="/src/assets/dropOffred.svg" alt="" />
+                  <img src={dropOffRed} alt="" />
                   <p>PickUp Location Sample</p>
                 </div>
               </div>

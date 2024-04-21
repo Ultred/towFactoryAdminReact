@@ -1,6 +1,6 @@
 import styles from "./MessagesMain.module.css";
 import { FaArrowLeft } from "react-icons/fa";
-
+import driverPic from "../../assets/driverPic1.svg";
 const MessagesMain = ({ onClose }) => {
   return (
     <div className={styles.MessagesMainOverlay}>
@@ -13,7 +13,7 @@ const MessagesMain = ({ onClose }) => {
         </div>
         <div className={styles.MessagesMainContBody}>
           <div className={styles.MessagesMainContBodyDiv}>
-            <img src="/src/assets/driverPic1.svg" alt="profilePic" />
+            <img src={driverPic} alt="profilePic" />
             <div className={styles.flexText}>
               <h2>Juan Dela Cruz</h2>
               <p>Hello Thanks for assistance!</p>

@@ -1,4 +1,7 @@
 import styles from "./CardData.module.css";
+import dropOffRedIcon from "../assets/dropOffred.svg";
+import pickUpBlueIcon from "../assets/pickUpblue.svg";
+import dateIcon from "../assets/date.svg";
 import PropTypes from "prop-types";
 const CardData = ({
   data: {
@@ -54,7 +57,7 @@ const CardData = ({
         </div>
         <div className={styles.cardDataContainerBodyRight}>
           <div className={styles.flexDataContainer}>
-            <img src="/src/assets/date.svg" alt="" />
+            <img src={dateIcon} alt="" />
             <div>
               <p>
                 Date Placed: <span>{datePlaced}</span>
@@ -65,11 +68,11 @@ const CardData = ({
             </div>
           </div>
           <div className={styles.flexDataContainer}>
-            <img src="/src/assets/pickUpblue.svg" alt="" />
+            <img src={pickUpBlueIcon} alt="pickup" />
             <p>{pickUpLocation}</p>
           </div>
           <div className={styles.flexDataContainer}>
-            <img src="/src/assets/dropOffred.svg" alt="" />
+            <img src={dropOffRedIcon} alt="dropoff" />
             <p>{dropOffLocation}</p>
           </div>
         </div>
