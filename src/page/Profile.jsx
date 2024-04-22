@@ -64,7 +64,10 @@ const Profile = () => {
             <div className={styles.profileContainerChangePass}>
               <div className={styles.marginTopBottom}>
                 <h2>Old Password</h2>
-                <PasswordField id={"oldPassword"} />
+                <PasswordField
+                  placeholder={"Old Password"}
+                  id={"oldPassword"}
+                />
               </div>
               <p className={styles.textLight}>
                 Your password today must be different from your previous
@@ -72,11 +75,18 @@ const Profile = () => {
               </p>
               <div className={styles.marginTopBottom}>
                 <h2>New Password</h2>
-                <PasswordField name="password" id={"newPassword"} />
+                <PasswordField
+                  placeholder={"New Password"}
+                  name="password"
+                  id={"newPassword"}
+                />
               </div>
               <div className={styles.marginTopBottom}>
                 <h2>Retype Password</h2>
-                <PasswordField id={"retypePassword"} />
+                <PasswordField
+                  placeholder={"Retype Password"}
+                  id={"retypePassword"}
+                />
               </div>
               <Button buttonStyle={"quaternary"}>Save Password</Button>
             </div>

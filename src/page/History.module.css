@@ -6,5 +6,25 @@
   grid-template-rows: 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
+}
+.buttonPrint {
+  width: 100%;
+  font-family: var(--montserrat-font);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  outline: solid 1px var(--black);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  padding: 0.5rem 1.3rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.printAllposition {
+  position: absolute;
+  right: 4%;
+  top: 13%;
 }

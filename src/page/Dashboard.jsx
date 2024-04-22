@@ -143,7 +143,7 @@ const Dashboard = () => {
               <Calendar />
             </div>
           </div>
-          <div className={styles.dashboardContainerBg}>
+          <div className={`${styles.dashboardContainerBg} ${styles.maxwidth}`}>
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>Driver(Available)</h2>
               <Link to={"/drivers"}>
@@ -167,6 +167,16 @@ const Dashboard = () => {
                 <Avatar status="notAvailable" />
                 <h3 className={styles.containerBold}>Juan</h3>
                 <p className={styles.driverFontsmall}>Not Available</p>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.dashboardContainerBg} ${styles.maxheigth}`}>
+            <div className="h-[85%]">
+              <div className={styles.scheduleContainerNotesTop}>
+                <h2>NOTE:</h2>
+              </div>
+              <div className={styles.scheduleContainerNotesBody}>
+                <p>Sample Note</p>
               </div>
             </div>
           </div>

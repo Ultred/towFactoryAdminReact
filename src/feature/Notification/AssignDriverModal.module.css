@@ -27,7 +27,7 @@
   font-size: 1.2rem;
 }
 .assignDriverModalBody {
-  padding: 1rem;
+  padding: 1rem 0 1rem 1rem;
 }
 .containerDriverBody {
   display: flex;
@@ -55,6 +55,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+  padding-right: 1rem;
 }
 .flexTopDatah2 {
   font-weight: 700;
@@ -79,4 +80,40 @@
 .buttonCall img {
   height: 2.2rem;
   width: 2.2rem;
+}
+.slider {
+  overflow-x: auto;
+  height: 20rem;
+  scrollbar-color: var(--primary-color) var(--white);
+  scrollbar-width: thin;
+}
+.slider::-webkit-scrollbar {
+  width: 10px; /* You can adjust the width as needed */
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+/* Opera */
+/* Blink (Opera) */
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+/* Hide scrollbar buttons (arrows) */
+.slider::-webkit-scrollbar-button {
+  display: none;
+}
+.slider::-moz-scrollbar-button {
+  /* Firefox */
+  display: none;
 }

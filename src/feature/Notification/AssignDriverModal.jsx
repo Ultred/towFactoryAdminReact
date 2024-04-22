@@ -34,31 +34,32 @@ const AssignDriverModal = () => {
           <h2 className={styles.flexTopDatah2}>Driver&apos;s Name</h2>
           <SortComponent />
         </div>
-
-        {driverData.map((data) => (
-          <div
-            className={`${styles.containerDriverBody} ${
-              selectedDriver === data.id ? styles.active : ""
-            }`}
-            key={data.id}
-            onClick={() => handleDriverSelect(data.id)}
-          >
-            <div className={styles.containerDriverPicandName}>
-              <Avatar status={data.status} />
-              <div>
-                <h2 className={styles.containerDriverPicandNameh2}>
-                  {data.name}
-                </h2>
-                <p className={styles.containerDriverPicandNameP}>
-                  {data.status}
-                </p>
+        <div className={styles.slider}>
+          {driverData.map((data) => (
+            <div
+              className={`${styles.containerDriverBody} ${
+                selectedDriver === data.id ? styles.active : ""
+              }`}
+              key={data.id}
+              onClick={() => handleDriverSelect(data.id)}
+            >
+              <div className={styles.containerDriverPicandName}>
+                <Avatar status={data.status} />
+                <div>
+                  <h2 className={styles.containerDriverPicandNameh2}>
+                    {data.name}
+                  </h2>
+                  <p className={styles.containerDriverPicandNameP}>
+                    {data.status}
+                  </p>
+                </div>
               </div>
+              <button className={styles.buttonCall}>
+                <img src={callIcon} alt="call" />
+              </button>
             </div>
-            <button className={styles.buttonCall}>
-              <img src={callIcon} alt="call" />
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className={styles.assignDriverModalBottom}>
         <Button

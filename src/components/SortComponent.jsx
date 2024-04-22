@@ -18,7 +18,7 @@ const SortComponent = () => {
       border: "none",
       fontWeight: 700,
       fontSize: "1rem",
-      borderRadius: "0.8rem",
+      borderRadius: "0.5rem",
       outline: "none",
       boxShadow: state.isFocused ? null : null,
       minWidth: "150px",

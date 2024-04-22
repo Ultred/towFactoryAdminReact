@@ -108,6 +108,11 @@
   position: absolute;
   z-index: 1;
 }
+.maxwidth {
+}
+.maxheigth {
+  height: 13.4rem;
+}
 .dataStylesh1 {
   font-weight: 700;
   font-size: 2rem;

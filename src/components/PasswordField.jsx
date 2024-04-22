@@ -3,7 +3,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 import styles from "./PasswordField.module.css";
 
-const PasswordField = ({ onChange, name, id }) => {
+const PasswordField = ({ onChange, name, id, placeholder }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -19,6 +19,7 @@ const PasswordField = ({ onChange, name, id }) => {
         type={showPassword ? "text" : "password"}
         name={name}
         id={id}
+        placeholder={placeholder}
       />
       {showPassword ? (
         <GoEyeClosed

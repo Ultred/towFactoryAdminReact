@@ -13,13 +13,15 @@ const ModalMain = ({ children }) => {
     <>
       <div onClick={handleOverlayClick} className={styles.modal_overlay}>
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0 }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0, opacity: 0 }}
           transition={{
+            type: "spring",
             ease: "easeInOut",
             duration: 0.2,
-            stiffness: 260,
+            stiffness: 600,
+            damping: 30,
           }}
           className={styles.modal}
         >

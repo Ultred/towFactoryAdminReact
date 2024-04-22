@@ -3,7 +3,6 @@ import CardData from "../components/CardData";
 import SecondNavbar from "../components/SecondNavbar";
 import styles from "./Trips.module.css";
 import { tripsData } from "../utils/DataSample";
-
 const TripsNavbarSampleData = ["ALL", "IN TRANSIT", "CANCELLED", "DELIVERED"];
 
 const Trips = () => {

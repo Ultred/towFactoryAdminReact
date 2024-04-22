@@ -4,7 +4,7 @@ import crossIcon from "../assets/crossiconWhite.svg";
 
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const handleClick = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
     if (onClick) {
       onClick();
     }

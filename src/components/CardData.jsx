@@ -17,7 +17,7 @@ const CardData = ({
   },
 }) => {
   let statusColorClass = "";
-
+  let statusColorP = "";
   // Determine color based on status
   switch (status.toUpperCase()) {
     case "IN TRANSIT":
@@ -29,8 +29,25 @@ const CardData = ({
     case "DELIVERED":
       statusColorClass = styles.delivered;
       break;
+    case "RECEIVED":
+      statusColorClass = styles.recieved;
+      break;
     default:
       statusColorClass = "";
+  }
+
+  switch (status.toUpperCase()) {
+    case "IN TRANSIT":
+      statusColorP = styles.inTransitP;
+      break;
+    case "CANCELLED":
+      statusColorP = styles.cancelledP;
+      break;
+    case "DELIVERED":
+      statusColorP = styles.deliveredP;
+      break;
+    default:
+      statusColorP = "";
   }
   return (
     <div className={styles.cardDataContainer}>
@@ -38,17 +55,21 @@ const CardData = ({
         <h2>
           TRACKING NUMBER: <span>{trackingNumber}</span>
         </h2>
+        <p>CLIENT: CLIENT 1</p>
       </div>
       <div className={styles.cardDataContainerBody}>
         <div className={styles.cardDataContainerBodyLeft}>
           <p>
-            STATUS: <span>{status}</span>
+            STATUS:
+            <span className={`${styles.boldText} ${statusColorP}`}>
+              {status}
+            </span>
           </p>
           <p>
             CLIENT: <span className={styles.boldText}>{client}</span>
           </p>
           <p>
-            MANUFACTURER:{" "}
+            MANUFACTURER:
             <span className={styles.boldText}>{manufacturer}</span>
           </p>
           <p>
