@@ -4,7 +4,30 @@ import { driverData } from "../../utils/DataSample";
 import styles from "./HistoryDriver.module.css";
 import SortComponent from "../../components/SortComponent";
 import driverProfilePic from "../../assets/driverPic1.svg";
+import Calendar from "react-calendar";
+import "../../page/Calendar.css";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 const HistoryDriver = () => {
+  const [openCalendar, setOpenCalendar] = useState(false);
+  const calendarRef = useRef(null);
+  const handleOpenCalendar = () => {
+    setOpenCalendar((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setOpenCalendar(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles.historyDriverContainer}>
       <div className={styles.historyDriveCont1}>
@@ -24,9 +47,27 @@ const HistoryDriver = () => {
       <div className={styles.historyDriveCont2}>
         <div className={styles.flexHistoryDriveCont2}>
           <SortComponent />
-          <button className={styles.flexCalendar}>
-            <FaCalendarDays /> Calendar
-          </button>
+          <div className="relative">
+            <button
+              onClick={handleOpenCalendar}
+              className={styles.flexCalendar}
+            >
+              <FaCalendarDays /> Calendar
+            </button>
+            <AnimatePresence>
+              {openCalendar && (
+                <motion.div
+                  ref={calendarRef}
+                  initial={{ opacity: 0, y: -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  className="absolute z-20 w-[20rem] top-[49px] right-0"
+                >
+                  <Calendar />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
         <div className={styles.contHistoryDriverMain}>
           <div className={styles.contDriverTop}>
