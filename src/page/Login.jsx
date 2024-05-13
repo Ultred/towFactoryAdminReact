@@ -5,9 +5,21 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import loginPic from "../assets/loginPic.png";
 import towFactoryLogo from "../assets/towfactoryLogo.svg";
+import PasswordField from "../components/PasswordField";
+import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
-
+  const [formData, setFormData] = useState({
+    emailAddress: "",
+    password: "",
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   const handleLogin = () => {
     navigate("/dashboard");
   };
@@ -32,20 +44,23 @@ const Login = () => {
             <div className={styles.email}>
               <label htmlFor="">Email</label>
               <InputField
+                onChange={handleInputChange}
+                id={"emailAddress"}
                 icon={"email"}
                 type={"email"}
-                name={"email"}
+                name={"emailAddress"}
                 styletype={"primary"}
+                value={formData.emailAddress}
                 placeholder={"Enter your Email"}
               />
             </div>
             <div className={styles.password}>
               <label htmlFor="">Password</label>
-              <InputField
-                icon={"password"}
-                type={"password"}
+              <PasswordField
+                onChange={handleInputChange}
+                id={"password"}
                 name={"password"}
-                styletype={"primary"}
+                value={formData.password}
                 placeholder={"Password"}
               />
             </div>
@@ -60,16 +75,9 @@ const Login = () => {
               <p className={styles.forgetP}>Forgot Password</p>
             </Link>
           </div>
-          <Button style={"primary"} onClick={handleLogin}>
+          <Button buttonStyle={"primary"} type={"submit"} onClick={handleLogin}>
             Log in
           </Button>
-
-          <p className={styles.noAccount}>
-            Don&apos;t have an account?{" "}
-            <Link className={styles.link} to="/signup">
-              Sign Up!
-            </Link>
-          </p>
         </form>
       </div>
     </>

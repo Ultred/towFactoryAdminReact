@@ -1,0 +1,51 @@
+import axios from "axios";
+import useAuthStore from "../context/useAuthStore";
+import { jwtDecode } from "jwt-decode";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
+const getUserId = () => {
+  const token = useAuthStore.getState().token;
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.userId;
+  return userId;
+};
+
+const axiosConfig = () => {
+  const token = useAuthStore.getState().token;
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
+const makeRequest = async (url, method, data) => {
+  try {
+    const config = axiosConfig();
+    if (data instanceof FormData) {
+      config.headers["Content-Type"] = "multipart/form-data";
+    }
+    console.log(data);
+    const response = await axios({
+      url: `${BASE_URL}${url}`,
+      method,
+      data,
+      ...config,
+    });
+    console.log(response);
+    if (!response) {
+      throw new Error(`${method} Error`);
+    }
+
+    return response.data;
+  } catch (error) {
+    const customError = error;
+    throw new Error(customError.response?.data?.message || "An error occurred");
+  }
+};
+
+export const postLogin = async (data) =>
+  makeRequest("api/v1/admin-accounts/login", "post", data);
+
+export const putChangePassword = async (data) =>
+  makeRequest(`api/v1/accounts/${getUserId()}/change-password`, "put", data);

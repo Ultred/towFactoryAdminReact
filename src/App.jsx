@@ -12,13 +12,7 @@ import Profile from "./page/Profile";
 //Layout
 import AppLayout from "./layout/AppLayout";
 
-//StateModal
-import { ModalStoreState } from "./context/ModalStoreState";
-import ModalMain from "./components/ModalMain";
-import { AnimatePresence } from "framer-motion";
-
 function App() {
-  const { isOpen, modalComponent } = ModalStoreState();
   const router = createBrowserRouter([
     {
       path: "*",
@@ -58,11 +52,7 @@ function App() {
 
   return (
     <>
-      {/* Modal Show Logic */}
-      <AnimatePresence>
-        {isOpen && <ModalMain>{modalComponent}</ModalMain>}
-        {/* Router */}
-      </AnimatePresence>
+      {/* Router */}
       <RouterProvider router={router} />
     </>
   );
