@@ -7,11 +7,31 @@ import loginPic from "../assets/loginPic.png";
 import towFactoryLogo from "../assets/towfactoryLogo.svg";
 import PasswordField from "../components/PasswordField";
 import { useState } from "react";
+import * as apiClient from "../service/ApiClient";
+import toast from "react-hot-toast";
+import useAuthStore from "../context/useAuthStore";
+import { useMutation } from "@tanstack/react-query";
+import FullScreenLoader from "../feature/loaders/FullScreenLoader";
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [formData, setFormData] = useState({
     emailAddress: "",
     password: "",
+  });
+  const { emailAddress, password } = formData;
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: apiClient.postLogin,
+    onSuccess: (response) => {
+      login(response.token);
+      toast.success("Login Successful");
+      navigate("/dashboard");
+    },
+    onError: (error) => {
+      console.log(error.message);
+      toast.error(error.message || "Something went wrong. Please try again.");
+    },
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +41,16 @@ const Login = () => {
     }));
   };
   const handleLogin = () => {
-    navigate("/dashboard");
+    if (!emailAddress || !password) {
+      toast.error("Please input Email or Password");
+      return;
+    }
+    mutate(formData);
+    console.log(formData);
   };
   return (
     <>
+      {isPending && <FullScreenLoader />}
       <div className={styles.container}>
         <div className={styles.imgLeft}>
           <img className={styles.imgLoginPic} src={loginPic} alt="" />
@@ -75,7 +101,12 @@ const Login = () => {
               <p className={styles.forgetP}>Forgot Password</p>
             </Link>
           </div>
-          <Button buttonStyle={"primary"} type={"submit"} onClick={handleLogin}>
+          <Button
+            isLoading={isPending}
+            buttonStyle={"primary"}
+            type={"submit"}
+            onClick={handleLogin}
+          >
             Log in
           </Button>
         </form>

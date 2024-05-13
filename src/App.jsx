@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 //Pages
 import Login from "./page/Login";
@@ -53,6 +54,7 @@ function App() {
   return (
     <>
       {/* Router */}
+      <Toaster />
       <RouterProvider router={router} />
     </>
   );

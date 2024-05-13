@@ -2,7 +2,7 @@ import styles from "./Button.module.css";
 import checkIcon from "../assets/checkIcon.svg";
 import crossIcon from "../assets/crossiconWhite.svg";
 
-const Button = ({ onClick, children, buttonStyle, type, icon }) => {
+const Button = ({ onClick, children, buttonStyle, type, icon, isLoading }) => {
   const handleClick = (event) => {
     event.preventDefault();
     if (onClick) {
@@ -26,11 +26,12 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
       className={`${styles.button} ${styles[buttonStyle]}`}
       onClick={handleClick}
       type={type}
+      disabled={isLoading}
     >
       {icon && (
         <img src={renderIcon(icon)} alt={icon} style={{ width: "20px" }} />
       )}
-      {children}
+      {isLoading ? "Loading..." : children}
     </button>
   );
 };
