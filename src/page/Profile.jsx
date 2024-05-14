@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch, FaArrowLeft } from "react-icons/fa";
 import Button from "../components/Button";
 import styles from "./Profile.module.css";
-import { LuLock } from "react-icons/lu";
-import { FaArrowLeft } from "react-icons/fa";
-import { GoEye } from "react-icons/go";
+import { RiPencilFill } from "react-icons/ri";
 import toolTip from "../assets/tooltip.svg";
 import profileIcon from "../assets/profile-icon.png";
 import lockPass from "../assets/lockPass.svg";
+import { BiShieldQuarter } from "react-icons/bi";
 import PasswordField from "../components/PasswordField";
+import AdminChildModal from "../feature/Profile/AdminChildModal";
+import { ModalStoreState } from "../context/ModalStoreState";
+import InsuranceModal from "../feature/Profile/InsuranceModal";
 const Profile = () => {
   const navigate = useNavigate();
-
+  const { openModal } = ModalStoreState();
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingPass, setisChangingPass] = useState(false);
   const handleEditProfile = () => {
@@ -22,6 +25,14 @@ const Profile = () => {
   };
   const handleLogoutTestOnlyNavigate = () => {
     navigate("/login");
+  };
+
+  const handleOpenAdminChildModal = () => {
+    openModal(<AdminChildModal />);
+  };
+
+  const handleOpenInsuranceModal = () => {
+    openModal(<InsuranceModal />);
   };
 
   return (
@@ -39,10 +50,26 @@ const Profile = () => {
                 </button>
               ) : (
                 <>
-                  <p>Insurance</p>
-                  <button onClick={handleEditProfile}>
-                    {isEditing ? "Save Profile" : "Edit Profile"}
+                  <button
+                    onClick={handleOpenAdminChildModal}
+                    className={styles.checkAdminChildButton}
+                  >
+                    <FaSearch /> Check Admin Child
                   </button>
+                  <div className={styles.buttonIconContainer}>
+                    <button
+                      className={styles.buttonIcon}
+                      onClick={handleOpenInsuranceModal}
+                    >
+                      <BiShieldQuarter />
+                    </button>
+                    <button
+                      className={styles.buttonIcon}
+                      onClick={handleEditProfile}
+                    >
+                      <RiPencilFill />
+                    </button>
+                  </div>
                 </>
               )}
             </div>

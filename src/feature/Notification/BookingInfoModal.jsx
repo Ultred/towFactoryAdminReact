@@ -6,7 +6,16 @@ import callIcon from "../../assets/callIcon.svg";
 import trackIcon from "../../assets/trackIcon.svg";
 import pickupBlue from "../../assets/pickUpblue.svg";
 import dropOffRed from "../../assets/dropOffred.svg";
+import { ModalStoreState } from "../../context/ModalStoreState";
+import AssignDriverModal from "./AssignDriverModal";
 const BookingInfoModal = () => {
+  const { openModal } = ModalStoreState();
+  const handleBackModal = () => {
+    openModal(<AssignDriverModal />);
+  };
+  const handleNextModal = () => {
+    console.log("test");
+  };
   return (
     <div className={styles.bookingInfocontainer}>
       <div className={styles.bookingInfoTop}>
@@ -123,11 +132,13 @@ const BookingInfoModal = () => {
           </div>
           <div className={styles.bottomFlex}>
             <button
+              onClick={handleBackModal}
               className={`${styles.buttonCircle} ${styles.buttonCircleCross}`}
             >
               <FaXmark />
             </button>
             <button
+              onClick={handleNextModal}
               className={`${styles.buttonCircle} ${styles.buttonCircleCheck}`}
             >
               <FaCheck />
