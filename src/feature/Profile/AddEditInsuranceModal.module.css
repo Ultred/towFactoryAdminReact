@@ -78,7 +78,11 @@
 }
 .InsuranceInfoBottomDiv {
   display: flex;
+  width: 100%;
+  gap: 9rem;
+  padding: 1.2rem 0.8rem;
 }
 .InsuranceInfoBottomDivFlex {
+  gap: 1rem;
   display: flex;
 }

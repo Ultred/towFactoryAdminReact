@@ -20,8 +20,8 @@ const InsuranceModal = () => {
         <FaXmark className="cursor-pointer" onClick={handleCloseModalX} />
       </div>
       <div className={styles.InsuranceInfoBody}>
-        <div className={styles.InsuranceInfo}>
-          <div className={styles.InsuranceInfoDiv}>
+        <ul className={styles.InsuranceInfo}>
+          <li className={styles.InsuranceInfoDiv}>
             <div className={styles.InsuranceInfoImg}>
               <img
                 className={styles.imgPic}
@@ -36,8 +36,24 @@ const InsuranceModal = () => {
             <div className={styles.editIcon}>
               <BsFillPencilFill />
             </div>
-          </div>
-        </div>
+          </li>
+          <li className={styles.InsuranceInfoDiv}>
+            <div className={styles.InsuranceInfoImg}>
+              <img
+                className={styles.imgPic}
+                src={insurancePic}
+                alt="picSample"
+              />
+              <div className={styles.InsuranceInfoText}>
+                <h2 className={styles.h2Font}>BPI MS Insurance</h2>
+                <p className={styles.pFont}>P 3500</p>
+              </div>
+            </div>
+            <div className={styles.editIcon}>
+              <BsFillPencilFill />
+            </div>
+          </li>
+        </ul>
       </div>
       <div onClick={handleAddInsurance} className={styles.InsuranceInfoBottom}>
         <p className={styles.pFontWhite}>

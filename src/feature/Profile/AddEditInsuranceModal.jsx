@@ -1,6 +1,4 @@
-import { BsFillPencilFill } from "react-icons/bs";
 import styles from "./AddEditInsuranceModal.module.css";
-import { HiPlusSm } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import Button from "../../components/Button";
@@ -27,7 +25,12 @@ const AddEditInsuranceModal = () => {
         <FaXmark className="cursor-pointer" onClick={handleCloseModalX} />
       </div>
       <div className={styles.InsuranceInfoBody}>
-        <div></div>
+        <div>
+          <span>Company:</span> <input type="text" name="" id="" />
+        </div>
+        <div>
+          <span>Pricing:</span> <input type="text" name="" id="" />
+        </div>
       </div>
       <div onClick={handleAddInsurance} className={styles.InsuranceInfoBottom}>
         <div className={styles.InsuranceInfoBottomDiv}>

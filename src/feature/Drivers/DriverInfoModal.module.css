@@ -66,3 +66,62 @@
   width: 100%;
   height: 100%;
 }
+.fontCenter {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+.cardDataContainer {
+  margin: 0 auto 1.5rem auto;
+  border-radius: 1rem;
+  padding: 0rem 1rem;
+}
+.cardDataContainerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  background-color: var(--status-orange);
+  border-radius: 1rem 1rem 0 0;
+}
+.cardDataContainerBody {
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.boldText {
+  font-weight: 700;
+}
+.flexDataContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flexDataContBottom {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+.fontCenterBottom {
+  text-align: center;
+  font-weight: 700;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+}
+.flexBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+}
+.flexBottom p {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.flexBottom p span {
+  margin-left: 0.3rem;
+  font-weight: 700;
+}
