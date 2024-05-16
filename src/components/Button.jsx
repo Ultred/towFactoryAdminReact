@@ -1,5 +1,6 @@
 import styles from "./Button.module.css";
 import checkIcon from "../assets/checkIcon.svg";
+import trashIcon from "../assets/trash.svg";
 import crossIcon from "../assets/crossiconWhite.svg";
 
 const Button = ({ onClick, children, buttonStyle, type, icon, isLoading }) => {
@@ -16,6 +17,8 @@ const Button = ({ onClick, children, buttonStyle, type, icon, isLoading }) => {
         return checkIcon;
       case "cross":
         return crossIcon;
+      case "delete":
+        return trashIcon;
       default:
         return null;
     }
