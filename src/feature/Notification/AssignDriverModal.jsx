@@ -62,20 +62,24 @@ const AssignDriverModal = () => {
         </div>
       </div>
       <div className={styles.assignDriverModalBottom}>
-        <Button
-          icon={"cross"}
-          onClick={handleShowNotifModal}
-          buttonStyle={"buttonCustom1"}
-        >
-          Cancel
-        </Button>
-        <Button
-          onClick={handleShowBookingInfoModal}
-          icon={"check"}
-          buttonStyle={"secondary"}
-        >
-          Assign Driver
-        </Button>
+        <div className="w-[40%]">
+          <Button
+            icon={"cross"}
+            onClick={handleShowNotifModal}
+            buttonStyle={"buttonCustom1"}
+          >
+            Cancel
+          </Button>
+        </div>
+        <div className="w-[60%]">
+          <Button
+            onClick={handleShowBookingInfoModal}
+            icon={"check"}
+            buttonStyle={"secondary"}
+          >
+            Assign Driver
+          </Button>
+        </div>
       </div>
     </div>
   );

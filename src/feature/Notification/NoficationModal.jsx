@@ -44,12 +44,16 @@ const NoficationModal = () => {
         <p className={styles.fontBlueP}>P10000</p>
       </div>
       <div className={styles.notificationModalButtons}>
-        <Button onClick={handleShowRejectModal} buttonStyle={"secondary"}>
-          Reject
-        </Button>
-        <Button onClick={handleShowAssignDriverModal} buttonStyle={"primary"}>
-          Accept
-        </Button>
+        <div className="w-[40%]">
+          <Button onClick={handleShowRejectModal} buttonStyle={"secondary"}>
+            Reject
+          </Button>
+        </div>
+        <div className="w-[60%]">
+          <Button onClick={handleShowAssignDriverModal} buttonStyle={"primary"}>
+            Accept
+          </Button>
+        </div>
       </div>
     </div>
   );

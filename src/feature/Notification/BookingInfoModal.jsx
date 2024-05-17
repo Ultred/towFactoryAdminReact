@@ -1,5 +1,6 @@
 import { FaXmark } from "react-icons/fa6";
 import styles from "./BookingInfoModal.module.css";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 import driverCircle from "../../assets/driverCircle.svg";
 import callIcon from "../../assets/callIcon.svg";
@@ -9,18 +10,29 @@ import dropOffRed from "../../assets/dropOffred.svg";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import AssignDriverModal from "./AssignDriverModal";
 const BookingInfoModal = () => {
-  const { openModal } = ModalStoreState();
+  const { openModal, closeModal } = ModalStoreState();
   const handleBackModal = () => {
     openModal(<AssignDriverModal />);
   };
   const handleNextModal = () => {
     console.log("test");
   };
+
+  const handleCloseModal = () => {
+    closeModal();
+  };
+
   return (
     <div className={styles.bookingInfocontainer}>
       <div className={styles.bookingInfoTop}>
-        <h2 className={styles.bookingInfoToph2}>Booking Information</h2>
-        <FaXmark />
+        <h2 className={styles.bookingInfoToph2}>
+          <IoMdArrowRoundBack
+            className="cursor-pointer"
+            onClick={handleBackModal}
+          />
+          Booking Information
+        </h2>
+        <FaXmark onClick={handleCloseModal} />
       </div>
       <div className={styles.bookingInfoBody1}>
         <div className={styles.flex}>
