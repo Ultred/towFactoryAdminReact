@@ -8,10 +8,34 @@ import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "./Calendar.css";
+
 import dashboardPic from "../assets/dashboardPic.svg";
 import dropOffRed from "../assets/dropOffred.svg";
 import pickupBlue from "../assets/pickUpblue.svg";
+import { useQuery } from "@tanstack/react-query";
+import * as apiClient from "../service/ApiClient";
 const Dashboard = () => {
+  //Code For Get filter Drivers
+  const { data: driverDatas, isLoading } = useQuery({
+    queryKey: ["driverData"],
+    queryFn: apiClient.getAllDrivers,
+    refetchOnWindowFocus: false,
+  });
+
+  const filteredDriverData = (status) => {
+    if (!driverDatas) return [];
+    if (status === "Available") {
+      return driverDatas.result.filter((driver) => driver.status === status);
+    } else {
+      return driverDatas.result.filter(
+        (driver) => driver.status !== "Available"
+      );
+    }
+  };
+  const availableDrivers = filteredDriverData("Available");
+  const notAvailableDrivers = filteredDriverData("NotAvailableAll");
+
+  //
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.flexJustify}>
@@ -24,7 +48,12 @@ const Dashboard = () => {
         <div className={styles.flexLeft}>
           <div className={styles.nameContainer}>
             <div className={styles.dataStyles}>
-              <h1 className={styles.dataStylesh1}>Hello, Admin Bruno!</h1>
+              <h1
+                onClick={() => console.log(availableDrivers)}
+                className={styles.dataStylesh1}
+              >
+                Hello, Admin Bruno!
+              </h1>
               <p className={styles.dataStylesp}>
                 Welcome Again, We Have a good weather today
               </p>
@@ -151,23 +180,33 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className={styles.slider}>
-              {driverData.map((driver, index) => (
-                <div className={styles.driverSlideContent} key={index}>
-                  <Avatar status={driver.status} />
-                  <h3 className={styles.containerBold}>{driver.name}</h3>
-                  <p className={styles.driverFontsmall}>{driver.status}</p>
-                </div>
-              ))}
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                availableDrivers.map((driver) => (
+                  <div className={styles.driverSlideContent} key={driver.id}>
+                    <Avatar status={driver.status} />
+                    <h3 className={styles.containerBold}>{driver.firstName}</h3>
+                    <p className={styles.driverFontsmall}>{driver.status}</p>
+                  </div>
+                ))
+              )}
             </div>
             <div className={styles.flexJustify}>
               <h2 className={styles.containerTitle}>Driver(Not Available)</h2>
             </div>
             <div className={styles.slider}>
-              <div className={styles.driverSlideContent}>
-                <Avatar status="notAvailable" />
-                <h3 className={styles.containerBold}>Juan</h3>
-                <p className={styles.driverFontsmall}>Not Available</p>
-              </div>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                notAvailableDrivers.map((driver) => (
+                  <div className={styles.driverSlideContent} key={driver.id}>
+                    <Avatar status={driver.status} />
+                    <h3 className={styles.containerBold}>{driver.firstName}</h3>
+                    <p className={styles.driverFontsmall}>{driver.status}</p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
           <div className={`${styles.dashboardContainerBg} ${styles.maxheigth}`}>

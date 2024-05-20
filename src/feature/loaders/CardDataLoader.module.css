@@ -1,0 +1,102 @@
+.skeletonLoader {
+  background-color: #ffffff;
+  box-shadow: 0px 3px 5px 4px rgba(83, 83, 83, 0.164);
+  margin: 0 auto 1.5rem auto;
+  max-width: 50rem;
+  border-radius: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.header {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title,
+.subtitle,
+.row div,
+.flexRow div {
+  height: 1.4rem;
+  background-color: #e5e7eb;
+  border-radius: 0.25rem;
+}
+
+.title {
+  width: 33.3333%;
+}
+
+.subtitle {
+  width: 25%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.column {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  flex-direction: column;
+}
+
+.row div {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.row div:nth-child(2) {
+  width: 66.6667%;
+}
+
+.row div:nth-child(3) {
+  width: 50%;
+}
+
+.row div:nth-child(4) {
+  width: 33.3333%;
+  margin-bottom: 0;
+}
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.flexRow div {
+  margin-right: 0.5rem;
+}
+
+.flexRow div:last-child {
+  margin-right: 0;
+}
+
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+}
+
+.flexText {
+  width: 75%;
+}
+
+.flexText:nth-child(2) {
+  width: 100%;
+  margin-right: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

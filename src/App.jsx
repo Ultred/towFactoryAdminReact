@@ -13,10 +13,12 @@ import Profile from "./page/Profile";
 //Layout
 import AppLayout from "./layout/AppLayout";
 
+//ProtectedRoute
+
 function App() {
   const router = createBrowserRouter([
     {
-      path: "*",
+      path: "/login",
       element: <Login />,
     },
     {

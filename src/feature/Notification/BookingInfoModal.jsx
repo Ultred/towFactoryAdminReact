@@ -45,7 +45,8 @@ const BookingInfoModal = () => {
           <div className={styles.flexInputContainer}>
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Driver:</h2>
-              <select
+              <p className={styles.fontMainbold}>John Batumbakal</p>
+              {/* <select
                 className={`${styles.fontMainbold} ${styles.selectBg}`}
                 name=""
                 id=""
@@ -53,7 +54,7 @@ const BookingInfoModal = () => {
                 <option value="option1">John Batumbakal</option>
                 <option value="option2">Jon Bones</option>
                 <option value="option3">Moniko ni monika</option>
-              </select>
+              </select> */}
             </div>
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Phone:</h2>

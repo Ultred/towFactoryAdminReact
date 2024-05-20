@@ -1,33 +1,90 @@
 import { useState } from "react";
-import CardData from "../components/CardData";
 import SecondNavbar from "../components/SecondNavbar";
 import styles from "./Trips.module.css";
-import { tripsData } from "../utils/DataSample";
-const TripsNavbarSampleData = ["ALL", "IN TRANSIT", "CANCELLED", "DELIVERED"];
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import * as apiClient from "../service/ApiClient";
+import CardDatas from "../components/CardDatas";
+import useDebounce from "../hooks/useDebounce";
+import CardDataLoader from "../feature/loaders/CardDataLoader";
+
+const TripsNavbarSampleData = ["ALL", "In Transit", "CANCELLED", "DELIVERED"];
 
 const Trips = () => {
-  const [filteredTrips, setFilteredTrips] = useState(tripsData);
-  const handleShowItemTrips = (index) => {
-    if (index == "ALL") {
-      setFilteredTrips(tripsData);
-    } else {
-      const filterTripsData = tripsData.filter(
-        (trip) => trip.status.toUpperCase() === index.toUpperCase()
-      );
-      setFilteredTrips(filterTripsData);
-    }
+  const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState("ALL");
+  const debouncedPage = useDebounce(page, 500);
+  const debouncedFilter = useDebounce(filter, 500);
+
+  const {
+    data: tripData,
+    isLoading,
+    isFetching,
+    isPending,
+  } = useQuery({
+    queryKey: ["tripData", debouncedPage, debouncedFilter],
+    queryFn: apiClient.getAllBookingsPagination,
+    refetchOnWindowFocus: false,
+    placeholderData: keepPreviousData,
+  });
+
+  const handleShowItemTrips = (item) => {
+    setFilter(item);
+    setPage(1);
+    console.log(item);
   };
 
+  //Pagination
+  const handlePrevClick = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
+  const handleNextClick = () => {
+    console.log(debouncedPage);
+    //const hasMore = tripData && tripData.currentPage < tripData.totalPages;
+    //console.log(hasMore);
+    setPage((old) => old + 1);
+    //console.log(tripData?.result.hasMore);
+    if (tripData.hasMore) {
+      console.log("has more");
+    }
+  };
   return (
     <>
+      <p onClick={() => console.log(tripData)}>Test Me</p>
       <div className={styles.tripsContainer}>
         <SecondNavbar
           onItemClick={handleShowItemTrips}
           data={TripsNavbarSampleData}
         />
-        {filteredTrips.map((trip) => (
-          <CardData key={trip.id} data={trip} />
-        ))}
+        <div>
+          <button
+            className="border bg-slate-400"
+            disabled={page === 1}
+            onClick={handlePrevClick}
+          >
+            <IoIosArrowBack />
+          </button>
+          {page}
+          <button
+            //disabled={isPlaceholderData || tripData?.hasMore}
+            className="border bg-slate-400"
+            onClick={handleNextClick}
+          >
+            <IoIosArrowForward />
+          </button>
+        </div>
+        {isLoading || isPending || isFetching ? (
+          <>
+            <CardDataLoader />
+            <CardDataLoader />
+          </>
+        ) : (
+          tripData?.result?.map((trip) => (
+            <CardDatas key={trip.id} data={trip} />
+          ))
+        )}
       </div>
     </>
   );

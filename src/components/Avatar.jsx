@@ -6,7 +6,7 @@ const Avatar = ({ status }) => {
     case "Available":
       statusClass = styles.avatarAvailable;
       break;
-    case "intransit":
+    case "In-Transit":
       statusClass = styles.avatarIntransit;
       break;
     case "notAvailable":

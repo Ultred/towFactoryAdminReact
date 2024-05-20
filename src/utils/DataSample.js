@@ -28,7 +28,7 @@ export const transitData = [
 export const driverData = [
   {
     id: 1,
-    name: "Juan",
+    firstName: "Juan",
     status: "Available",
     plateNumber: "ABC 123",
     driverPicture: "/src/assets/driverPic1.svg",

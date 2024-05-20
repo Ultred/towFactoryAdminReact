@@ -10,8 +10,12 @@ const getUserId = () => {
   return userId;
 };
 
+const redirectToLogin = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/login";
+};
 const axiosConfig = () => {
-  const token = useAuthStore.getState().token;
+  const token = useAuthStore.getState().token || localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -25,20 +29,22 @@ const makeRequest = async (url, method, data) => {
     if (data instanceof FormData) {
       config.headers["Content-Type"] = "multipart/form-data";
     }
-    console.log(data);
     const response = await axios({
       url: `${BASE_URL}${url}`,
       method,
       data,
       ...config,
     });
-    console.log(response);
     if (!response) {
       throw new Error(`${method} Error`);
     }
 
     return response.data;
   } catch (error) {
+    if (error.response?.data?.message === "jwt expired") {
+      // Redirect to login page if JWT token expires
+      redirectToLogin();
+    }
     const customError = error;
     throw new Error(customError.response?.data?.message || "An error occurred");
   }
@@ -49,3 +55,15 @@ export const postLogin = async (data) =>
 
 export const putChangePassword = async (data) =>
   makeRequest(`api/v1/accounts/${getUserId()}/change-password`, "put", data);
+export const getAllBookingsPagination = async ({ queryKey }) => {
+  const page = queryKey[1];
+  const status = queryKey[2];
+  const statusQuery = status && status !== "ALL" ? `&status=${status}` : "";
+
+  return makeRequest(`api/v1/bookings/all?page=${page}${statusQuery}`, "get");
+};
+export const getAllDrivers = async () =>
+  makeRequest("api/v1/drivers/all", "get");
+
+export const getAllInsurances = async () =>
+  makeRequest("api/v1/insurance/all", "get");

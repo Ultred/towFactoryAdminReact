@@ -1,5 +1,4 @@
 import styles from "./AssignDriverModal.module.css";
-import { driverData } from "../../utils/DataSample";
 import { FaXmark } from "react-icons/fa6";
 import Avatar from "../../components/Avatar";
 import Button from "../../components/Button";
@@ -9,11 +8,32 @@ import { useState } from "react";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import SortComponent from "../../components/SortComponent";
 import BookingInfoModal from "./BookingInfoModal";
+import * as apiClient from "../../service/ApiClient";
+import { useQuery } from "@tanstack/react-query";
 const AssignDriverModal = () => {
   const { openModal, closeModal } = ModalStoreState();
   const [selectedDriver, setSelectedDriver] = useState(null);
 
+  const { data: driverDatas, isLoading } = useQuery({
+    queryKey: ["driverData"],
+    queryFn: apiClient.getAllDrivers,
+    refetchOnWindowFocus: false,
+  });
+
+  const filteredDriverData = (status) => {
+    if (!driverDatas) return [];
+    if (status === "Available") {
+      return driverDatas.result.filter((driver) => driver.status === status);
+    } else {
+      return driverDatas.result.filter(
+        (driver) => driver.status !== "Available"
+      );
+    }
+  };
+
+  const availableDrivers = filteredDriverData("Available");
   const handleDriverSelect = (id) => {
+    console.log(availableDrivers);
     setSelectedDriver(id);
   };
 
@@ -34,32 +54,36 @@ const AssignDriverModal = () => {
           <h2 className={styles.flexTopDatah2}>Driver&apos;s Name</h2>
           <SortComponent />
         </div>
-        <div className={styles.slider}>
-          {driverData.map((data) => (
-            <div
-              className={`${styles.containerDriverBody} ${
-                selectedDriver === data.id ? styles.active : ""
-              }`}
-              key={data.id}
-              onClick={() => handleDriverSelect(data.id)}
-            >
-              <div className={styles.containerDriverPicandName}>
-                <Avatar status={data.status} />
-                <div>
-                  <h2 className={styles.containerDriverPicandNameh2}>
-                    {data.name}
-                  </h2>
-                  <p className={styles.containerDriverPicandNameP}>
-                    {data.status}
-                  </p>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className={styles.slider}>
+            {availableDrivers.map((data) => (
+              <div
+                className={`${styles.containerDriverBody} ${
+                  selectedDriver === data.id ? styles.active : ""
+                }`}
+                key={data.id}
+                onClick={() => handleDriverSelect(data.id)}
+              >
+                <div className={styles.containerDriverPicandName}>
+                  <Avatar status={data.status} />
+                  <div>
+                    <h2 className={styles.containerDriverPicandNameh2}>
+                      {data.firstName} {data.lastName}
+                    </h2>
+                    <p className={styles.containerDriverPicandNameP}>
+                      {data.status}
+                    </p>
+                  </div>
                 </div>
+                <button className={styles.buttonCall}>
+                  <img src={callIcon} alt="call" />
+                </button>
               </div>
-              <button className={styles.buttonCall}>
-                <img src={callIcon} alt="call" />
-              </button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className={styles.assignDriverModalBottom}>
         <div className="w-[40%]">

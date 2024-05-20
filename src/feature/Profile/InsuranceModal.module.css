@@ -76,3 +76,9 @@
   gap: 0.5rem;
   padding: 1.5rem 0;
 }
+.slider {
+  overflow-x: auto;
+  height: 25rem;
+  scrollbar-color: var(--primary-color) var(--white);
+  scrollbar-width: thin;
+}
