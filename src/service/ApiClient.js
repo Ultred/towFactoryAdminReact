@@ -67,3 +67,6 @@ export const getAllDrivers = async () =>
 
 export const getAllInsurances = async () =>
   makeRequest("api/v1/insurance/all", "get");
+
+export const getPendingBookings = async () =>
+  makeRequest("api/v1/bookings/filter-by-pending", "get");

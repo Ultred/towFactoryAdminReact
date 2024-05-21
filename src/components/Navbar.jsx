@@ -1,21 +1,62 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "../components/Navbar.module.css";
 import profileIcon from "../assets/profile-icon.png";
-import notificationIcon from "../assets/notifications.svg";
 import logoIcon from "../assets/towfactoryLogo.svg";
 import { ModalStoreState } from "../context/ModalStoreState";
 import NoficationModal from "../feature/Notification/NoficationModal";
+import { useQuery } from "@tanstack/react-query";
+import bellIcon from "../assets/bell.svg";
+import * as apiClient from "../service/ApiClient";
+import { useEffect, useState } from "react";
+import NoBookingFound from "../feature/Notification/NoBookingFound";
 
 const Navbar = () => {
   const { openModal } = ModalStoreState();
+  const [hasNewNotification, setHasNewNotification] = useState(false);
+  const { data: notif, isFetching } = useQuery({
+    queryKey: ["notifactionPending"],
+    queryFn: apiClient.getPendingBookings,
+    refetchInterval: 5000,
+  });
+
+  const playNotificationSound = () => {
+    const audio = new Audio("/alarm.wav");
+    audio.play().catch((error) => {
+      console.error("Error playing notification sound:", error);
+    });
+  };
 
   const handleShowNotificationModal = () => {
-    openModal(<NoficationModal />);
+    if (hasNewNotification && notif?.result?.length > 0) {
+      const getOnlyOneNotif = notif.result[0];
+      playNotificationSound();
+      openModal(<NoficationModal notifData={getOnlyOneNotif} />);
+    } else {
+      openModal(<NoBookingFound />);
+    }
   };
+
+  useEffect(() => {
+    if (notif && notif.result && notif.result.length > 0) {
+      console.log(notif);
+      setHasNewNotification(true);
+      setTimeout(() => {
+        handleShowNotificationModal();
+      }, 100);
+    } else {
+      setHasNewNotification(false);
+    }
+  }, [notif, isFetching]);
+
   return (
     <>
       <nav className={styles.navbar}>
-        <img className={styles.imgLogo} src={logoIcon} alt="Logo" />
+        <img
+          onClick={playNotificationSound}
+          className={styles.imgLogo}
+          src={logoIcon}
+          alt="Logo"
+        />
         <div className={styles.navButtons}>
           <ul className={styles.LinkFlex}>
             <li>
@@ -69,8 +110,16 @@ const Navbar = () => {
               </NavLink>
             </li>
             <div className={styles.flexIconNavbar}>
-              <li onClick={handleShowNotificationModal}>
-                <img src={notificationIcon} className={styles.profileIcon} />
+              <li
+                className={`${styles.NotifIcon} ${
+                  hasNewNotification ? styles.shake : ""
+                }`}
+                onClick={handleShowNotificationModal}
+              >
+                {hasNewNotification && (
+                  <span className={styles.notificationIconDOTRED}></span>
+                )}
+                <img src={bellIcon} className={styles.profileIcon2} />
               </li>
               <li>
                 <Link to="/profile">

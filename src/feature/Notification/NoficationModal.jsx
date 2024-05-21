@@ -5,7 +5,7 @@ import styles from "./NotificationModal.module.css";
 import dropOffRed from "../../assets/dropOffred.svg";
 import pickupBlue from "../../assets/pickUpblue.svg";
 import RejectionNotifModal from "./RejectionNotifModal";
-const NoficationModal = () => {
+const NoficationModal = ({ notifData }) => {
   const { openModal } = ModalStoreState();
 
   const handleShowRejectModal = () => {
@@ -23,20 +23,25 @@ const NoficationModal = () => {
       </div>
       <div className={styles.notificationModalData}>
         <p>
-          CLIENT: <span className={styles.boldtext}>Juan Dela Cruz</span>
+          CLIENT:{" "}
+          <span className={styles.boldtext}>
+            {notifData.user.firstName}
+            {notifData.user.lastName}
+          </span>
         </p>
         <p>
-          PHONE: <span className={styles.boldtext}>09123456789</span>
+          Type:
+          <span className={styles.boldtext}>{notifData.serviceType}</span>
         </p>
       </div>
       <div className={styles.notificationModalLocation}>
         <div className={styles.flexNotif}>
           <img src={pickupBlue} alt="pickup" />
-          <p>839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila</p>
+          <p>{notifData.pickUpAddress}</p>
         </div>
         <div className={styles.flexNotif}>
           <img src={dropOffRed} alt="dropoff" />
-          <p>Espana, Manila City, Metro Manila, Philippines</p>
+          <p>{notifData.dropOffAddress}</p>
         </div>
       </div>
       <div className={styles.flexTotal}>
