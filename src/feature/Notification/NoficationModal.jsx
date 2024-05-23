@@ -5,9 +5,12 @@ import styles from "./NotificationModal.module.css";
 import dropOffRed from "../../assets/dropOffred.svg";
 import pickupBlue from "../../assets/pickUpblue.svg";
 import RejectionNotifModal from "./RejectionNotifModal";
-const NoficationModal = ({ notifData }) => {
+import { useQuery } from "@tanstack/react-query";
+import * as apiClient from "../../service/ApiClient";
+import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
+const NoficationModal = () => {
   const { openModal } = ModalStoreState();
-
+  const { soloBookNotifValue } = SaveNotifBookingSolo();
   const handleShowRejectModal = () => {
     openModal(<RejectionNotifModal />);
   };
@@ -25,28 +28,29 @@ const NoficationModal = ({ notifData }) => {
         <p>
           CLIENT:{" "}
           <span className={styles.boldtext}>
-            {notifData.user.firstName}
-            {notifData.user.lastName}
+            {`${soloBookNotifValue.user.firstName}  ${soloBookNotifValue.user.lastName}`}
           </span>
         </p>
         <p>
-          Type:
-          <span className={styles.boldtext}>{notifData.serviceType}</span>
+          Type:{" "}
+          <span className={styles.boldtext}>
+            {soloBookNotifValue.serviceType}
+          </span>
         </p>
       </div>
       <div className={styles.notificationModalLocation}>
         <div className={styles.flexNotif}>
           <img src={pickupBlue} alt="pickup" />
-          <p>{notifData.pickUpAddress}</p>
+          <p>{soloBookNotifValue.pickUpAddress}</p>
         </div>
         <div className={styles.flexNotif}>
           <img src={dropOffRed} alt="dropoff" />
-          <p>{notifData.dropOffAddress}</p>
+          <p>{soloBookNotifValue.dropOffAddress}</p>
         </div>
       </div>
       <div className={styles.flexTotal}>
         <h2 className={styles.fontBoldh}>Total Amount:</h2>
-        <p className={styles.fontBlueP}>P10000</p>
+        <p className={styles.fontBlueP}>P {soloBookNotifValue.totalAmount}</p>
       </div>
       <div className={styles.notificationModalButtons}>
         <div className="w-[40%]">

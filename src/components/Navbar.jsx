@@ -9,14 +9,17 @@ import bellIcon from "../assets/bell.svg";
 import * as apiClient from "../service/ApiClient";
 import { useEffect, useState } from "react";
 import NoBookingFound from "../feature/Notification/NoBookingFound";
+import { SaveNotifBookingSolo } from "../context/SaveNotifBookingState";
 
 const Navbar = () => {
   const { openModal } = ModalStoreState();
+  const { soloBookNotifValue, setSoloBookNotifValue } = SaveNotifBookingSolo();
   const [hasNewNotification, setHasNewNotification] = useState(false);
   const { data: notif, isFetching } = useQuery({
     queryKey: ["notifactionPending"],
     queryFn: apiClient.getPendingBookings,
-    refetchInterval: 5000,
+    refetchOnWindowFocus: false,
+    refetchInterval: 100000,
   });
 
   const playNotificationSound = () => {
@@ -29,8 +32,9 @@ const Navbar = () => {
   const handleShowNotificationModal = () => {
     if (hasNewNotification && notif?.result?.length > 0) {
       const getOnlyOneNotif = notif.result[0];
-      playNotificationSound();
-      openModal(<NoficationModal notifData={getOnlyOneNotif} />);
+      setSoloBookNotifValue(getOnlyOneNotif);
+      //console.log(soloBookNotifValue);
+      openModal(<NoficationModal />);
     } else {
       openModal(<NoBookingFound />);
     }
@@ -38,11 +42,8 @@ const Navbar = () => {
 
   useEffect(() => {
     if (notif && notif.result && notif.result.length > 0) {
-      console.log(notif);
+      //console.log(notif);
       setHasNewNotification(true);
-      setTimeout(() => {
-        handleShowNotificationModal();
-      }, 100);
     } else {
       setHasNewNotification(false);
     }

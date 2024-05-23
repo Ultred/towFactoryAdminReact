@@ -24,6 +24,8 @@ const axiosConfig = () => {
 };
 
 const makeRequest = async (url, method, data) => {
+  console.log(data);
+
   try {
     const config = axiosConfig();
     if (data instanceof FormData) {
@@ -55,6 +57,7 @@ export const postLogin = async (data) =>
 
 export const putChangePassword = async (data) =>
   makeRequest(`api/v1/accounts/${getUserId()}/change-password`, "put", data);
+
 export const getAllBookingsPagination = async ({ queryKey }) => {
   const page = queryKey[1];
   const status = queryKey[2];
@@ -62,6 +65,7 @@ export const getAllBookingsPagination = async ({ queryKey }) => {
 
   return makeRequest(`api/v1/bookings/all?page=${page}${statusQuery}`, "get");
 };
+
 export const getAllDrivers = async () =>
   makeRequest("api/v1/drivers/all", "get");
 
@@ -70,3 +74,11 @@ export const getAllInsurances = async () =>
 
 export const getPendingBookings = async () =>
   makeRequest("api/v1/bookings/filter-by-pending", "get");
+
+export const putAssignDriverNotif = async ({ queryKey, formData }) => {
+  makeRequest(`api/v1/bookings/${queryKey[1]}/assign-driver`, "put", formData);
+};
+
+export const getPendingBookingSolo = async ({ queryKey }) => {
+  makeRequest(`api/v1/bookings/${queryKey[1]}/list`);
+};

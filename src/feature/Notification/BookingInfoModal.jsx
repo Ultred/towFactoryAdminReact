@@ -9,13 +9,42 @@ import pickupBlue from "../../assets/pickUpblue.svg";
 import dropOffRed from "../../assets/dropOffred.svg";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import AssignDriverModal from "./AssignDriverModal";
+import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
+import * as apiClient from "../../service/ApiClient";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 const BookingInfoModal = () => {
   const { openModal, closeModal } = ModalStoreState();
+  const { soloBookNotifValue } = SaveNotifBookingSolo();
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["acceptance", soloBookNotifValue.id],
+    mutationFn: apiClient.putAssignDriverNotif,
+    onSuccess: (response) => {
+      toast.success("Booking In-transit");
+    },
+    onError: (error) => {
+      console.log(error.message);
+      toast.error(error.message || "Something went wrong. Please try again.");
+    },
+  });
+
   const handleBackModal = () => {
     openModal(<AssignDriverModal />);
   };
-  const handleNextModal = () => {
-    console.log("test");
+  const handleNextDone = () => {
+    const { driverData } = soloBookNotifValue;
+    const driverId = driverData.id;
+    console.log(driverId);
+    const formData = new FormData();
+
+    formData.append(
+      "data",
+      JSON.stringify({
+        driverId,
+      })
+    );
+    mutate(formData);
+    console.log(soloBookNotifValue);
   };
 
   const handleCloseModal = () => {
@@ -45,7 +74,9 @@ const BookingInfoModal = () => {
           <div className={styles.flexInputContainer}>
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Driver:</h2>
-              <p className={styles.fontMainbold}>John Batumbakal</p>
+              <p className={styles.fontMainbold}>
+                {`${soloBookNotifValue.driverData.firstName}  ${soloBookNotifValue.driverData.lastName}`}
+              </p>
               {/* <select
                 className={`${styles.fontMainbold} ${styles.selectBg}`}
                 name=""
@@ -59,12 +90,14 @@ const BookingInfoModal = () => {
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Phone:</h2>
               <p className={styles.fontMainbold}>
-                <span>+63</span>9615698142
+                {soloBookNotifValue.driverData.phoneNumber}
               </p>
             </div>
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Plate Number:</h2>
-              <p className={styles.fontMainbold}>ABC 123</p>
+              <p className={styles.fontMainbold}>
+                {soloBookNotifValue.driverData.plateNumber}
+              </p>
             </div>
           </div>
         </div>
@@ -80,26 +113,26 @@ const BookingInfoModal = () => {
       <div className={styles.slider}>
         <div className={styles.bookingInfoBody2}>
           <p className={styles.bookingInfoBodyP}>
-            STATUS: <b>-</b>
+            STATUS: <b>{soloBookNotifValue.status}</b>
           </p>
           <p className={styles.bookingInfoBodyP}>
-            CLIENT: <b>Juan Dela Cruz</b>
+            CLIENT:{" "}
+            <b>
+              {`${soloBookNotifValue.user.firstName}  ${soloBookNotifValue.user.lastName}`}
+            </b>
           </p>
           <p className={styles.bookingInfoBodyP}>
-            PHONE: <span>+63</span> <b>9615698142</b>{" "}
+            PHONE: {soloBookNotifValue.phone}
           </p>
         </div>
         <div className={styles.bookingInfoBody3}>
           <div className={styles.bookingInfoBody3Flex}>
             <img src={pickupBlue} alt="pickup" />
-            <p>
-              {" "}
-              839 unit-N S. H. Loyola, Sampaloc, Manila, 1008 Metro Manila{" "}
-            </p>
+            <p> {soloBookNotifValue.pickUpAddress} </p>
           </div>
           <div className={styles.bookingInfoBody3Flex}>
             <img src={dropOffRed} alt="dropOff" />
-            <p> Espana, Manila City, Metro Manila, Philippines </p>
+            <p> {soloBookNotifValue.dropOffAddress} </p>
           </div>
         </div>
         <div className={styles.bookingInfoBody4}>
@@ -111,17 +144,12 @@ const BookingInfoModal = () => {
               </div>
               <span className={styles.fontBold}>P 1500</span>
             </li>
-            <li className={styles.styleLiList}>
-              <div className={styles.styleDivList}>
-                <p>RollersPcccc</p> <span>1PC</span>
-              </div>
-              <span className={styles.fontBold}>P 1500</span>
-            </li>
           </ul>
           <div className={styles.noteContainer}>
             <p>
               <span>NOTE:</span>
-              Can’t start the vehicle, can neutral, the handbreak is okay.
+              {"  "}
+              {soloBookNotifValue.note}
             </p>
           </div>
         </div>
@@ -141,7 +169,7 @@ const BookingInfoModal = () => {
         <div className={styles.amountContainer}>
           <div className={styles.bottomFlex}>
             <h3 className={styles.fontLight3}>Total Amount:</h3>
-            <span>P1500</span>
+            <span>P{soloBookNotifValue.totalAmount}</span>
           </div>
           <div className={styles.bottomFlex}>
             <button
@@ -151,7 +179,7 @@ const BookingInfoModal = () => {
               <FaXmark />
             </button>
             <button
-              onClick={handleNextModal}
+              onClick={handleNextDone}
               className={`${styles.buttonCircle} ${styles.buttonCircleCheck}`}
             >
               <FaCheck />

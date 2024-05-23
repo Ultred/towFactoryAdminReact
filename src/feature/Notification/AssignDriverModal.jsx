@@ -4,20 +4,23 @@ import Avatar from "../../components/Avatar";
 import Button from "../../components/Button";
 import NoficationModal from "./NoficationModal";
 import callIcon from "../../assets/callIcon.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import SortComponent from "../../components/SortComponent";
 import BookingInfoModal from "./BookingInfoModal";
 import * as apiClient from "../../service/ApiClient";
 import { useQuery } from "@tanstack/react-query";
+import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
+
 const AssignDriverModal = () => {
   const { openModal, closeModal } = ModalStoreState();
+  const { soloBookNotifValue, setSoloBookNotifValue } = SaveNotifBookingSolo();
   const [selectedDriver, setSelectedDriver] = useState(null);
 
   const { data: driverDatas, isLoading } = useQuery({
     queryKey: ["driverData"],
     queryFn: apiClient.getAllDrivers,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   const filteredDriverData = (status) => {
@@ -32,10 +35,17 @@ const AssignDriverModal = () => {
   };
 
   const availableDrivers = filteredDriverData("Available");
-  const handleDriverSelect = (id) => {
-    console.log(availableDrivers);
-    setSelectedDriver(id);
+
+  const handleDriverSelect = (driverData) => {
+    //console.log(availableDrivers);
+    setSoloBookNotifValue({ ...soloBookNotifValue, driverData });
+    setSelectedDriver(driverData.id);
   };
+  useEffect(() => {
+    if (soloBookNotifValue.driverData) {
+      setSelectedDriver(soloBookNotifValue.driverData.id);
+    }
+  }, []);
 
   const handleShowBookingInfoModal = () => {
     openModal(<BookingInfoModal />);
@@ -64,7 +74,7 @@ const AssignDriverModal = () => {
                   selectedDriver === data.id ? styles.active : ""
                 }`}
                 key={data.id}
-                onClick={() => handleDriverSelect(data.id)}
+                onClick={() => handleDriverSelect(data)}
               >
                 <div className={styles.containerDriverPicandName}>
                   <Avatar status={data.status} />
