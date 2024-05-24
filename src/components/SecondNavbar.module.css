@@ -1,4 +1,5 @@
 .tripsNavberUl {
+  text-transform: uppercase;
   display: flex;
   gap: 3.3rem;
   margin: 1.5rem 0;

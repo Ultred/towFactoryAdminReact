@@ -18,7 +18,7 @@ const Navbar = () => {
   const { data: notif, isFetching } = useQuery({
     queryKey: ["notifactionPending"],
     queryFn: apiClient.getPendingBookings,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
     refetchInterval: 100000,
   });
 
@@ -42,7 +42,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (notif && notif.result && notif.result.length > 0) {
-      //console.log(notif);
+      playNotificationSound();
       setHasNewNotification(true);
     } else {
       setHasNewNotification(false);

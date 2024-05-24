@@ -5,7 +5,6 @@ import dropOffRedIcon from "../../assets/dropOffred.svg";
 import dateIcon from "../../assets/date.svg";
 import Avatar from "../../components/Avatar";
 import { ModalStoreState } from "../../context/ModalStoreState";
-import callIcon from "../../assets/callIcon.svg";
 import trackIcon from "../../assets/trackIcon.svg";
 const DriverInfoModal = () => {
   const { closeModal } = ModalStoreState();
@@ -55,9 +54,6 @@ const DriverInfoModal = () => {
           </div>
         </div>
         <div className={styles.flexButtonsContainer}>
-          <button className={styles.bookingInfobutton}>
-            <img src={callIcon} alt="call" />
-          </button>
           <button className={styles.bookingInfobutton}>
             <img src={trackIcon} alt="track" />
           </button>

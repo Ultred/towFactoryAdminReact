@@ -32,9 +32,9 @@ const NoficationModal = () => {
           </span>
         </p>
         <p>
-          Type:{" "}
+          Phone:{" "}
           <span className={styles.boldtext}>
-            {soloBookNotifValue.serviceType}
+            {soloBookNotifValue.user.phoneNumber}
           </span>
         </p>
       </div>

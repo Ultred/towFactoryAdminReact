@@ -7,6 +7,7 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import AddEditInsuranceModal from "./AddEditInsuranceModal";
 import * as apiClient from "../../service/ApiClient";
 import { useQuery } from "@tanstack/react-query";
+import AddOnlyInsuranceModal from "./AddOnlyInsuranceModal";
 const InsuranceModal = () => {
   const { openModal, closeModal } = ModalStoreState();
   const { data: insuranceData, isLoading } = useQuery({
@@ -17,7 +18,11 @@ const InsuranceModal = () => {
     closeModal();
   };
   const handleAddInsurance = () => {
-    openModal(<AddEditInsuranceModal />);
+    openModal(<AddOnlyInsuranceModal />);
+  };
+  const handleEditInsurance = (insuranceId) => {
+    //console.log(id);
+    openModal(<AddEditInsuranceModal insuranceId={insuranceId} />);
   };
   return (
     <div className={styles.InsuranceInfoContainer}>
@@ -31,24 +36,25 @@ const InsuranceModal = () => {
             {isLoading
               ? "Loading..."
               : insuranceData?.result?.map((insurance) => (
-                  <>
-                    <li key={insurance.id} className={styles.InsuranceInfoDiv}>
-                      <div className={styles.InsuranceInfoImg}>
-                        <img
-                          className={styles.imgPic}
-                          src={insurancePic}
-                          alt="picSample"
-                        />
-                        <div className={styles.InsuranceInfoText}>
-                          <h2 className={styles.h2Font}>{insurance.name}</h2>
-                          <p className={styles.pFont}>{insurance.price}</p>
-                        </div>
+                  <li key={insurance.id} className={styles.InsuranceInfoDiv}>
+                    <div className={styles.InsuranceInfoImg}>
+                      <img
+                        className={styles.imgPic}
+                        src={insurancePic}
+                        alt="picSample"
+                      />
+                      <div className={styles.InsuranceInfoText}>
+                        <h2 className={styles.h2Font}>{insurance.name}</h2>
+                        <p className={styles.pFont}>{insurance.price}</p>
                       </div>
-                      <div className={styles.editIcon}>
-                        <BsFillPencilFill />
-                      </div>
-                    </li>
-                  </>
+                    </div>
+                    <div
+                      onClick={() => handleEditInsurance(insurance.id)}
+                      className={styles.editIcon}
+                    >
+                      <BsFillPencilFill />
+                    </div>
+                  </li>
                 ))}
           </ul>
         </div>

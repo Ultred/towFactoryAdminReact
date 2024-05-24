@@ -1,73 +1,44 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./AddEditInsuranceModal.module.css";
+import { useState } from "react";
+import styles from "./AddOnlyInsuranceModal.module.css";
 import { FaXmark } from "react-icons/fa6";
 import { IoCameraSharp } from "react-icons/io5";
 import imgPicSample from "../../assets/insurance1Sample.png";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import Button from "../../components/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import * as apiClient from "../../service/ApiClient";
 import InsuranceModal from "./InsuranceModal";
-import { useQuery } from "@tanstack/react-query";
 
-const AddEditInsuranceModal = ({ insuranceId }) => {
+const AddOnlyInsuranceModal = () => {
   const { closeModal, openModal } = ModalStoreState();
-  const {
-    data: insuranceSoloId,
-    isError,
-    isLoading,
-  } = useQuery({
-    queryKey: ["insuranceSolo", insuranceId],
-    queryFn: apiClient.getSoloInsurancebyID,
-    refetchOnWindowFocus: false,
-  });
-
-  // Initialize form data with empty strings
-  const [formData, setFormData] = useState({
-    name: "",
-    price: "",
-  });
-
-  // Function to handle input changes for all fields
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const [imageSrc, setImageSrc] = useState("");
 
   const handleBackModal = () => {
-    //console.log(insuranceSoloId);
     openModal(<InsuranceModal />);
   };
-
   const handleDeleteInsurance = () => {};
-
   const handleCloseModalX = () => {
     closeModal();
   };
-
+  const handleAddInsurance = () => {
+    closeModal();
+  };
+  const handleCancelInsurance = () => {
+    console.log("test");
+  };
   const handleSaveInsurance = () => {
     console.log("test");
   };
 
-  useEffect(() => {
-    if (!isLoading && insuranceSoloId?.result) {
-      setFormData({
-        name: insuranceSoloId.result.name || "",
-        price: insuranceSoloId.result.price || "",
-      });
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImageSrc(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
-  }, [insuranceSoloId, isLoading]);
-
-  if (isError) {
-    return <p>Error</p>;
-  }
-  if (isLoading) {
-    return <p>Loading</p>;
-  }
+  };
 
   return (
     <div className={styles.InsuranceInfoContainer}>
@@ -87,11 +58,17 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
             <div className={styles.forPositionRelative}>
               <img
                 className={styles.imgPicInsurance}
-                src={imgPicSample}
-                alt="Insurance Sample"
+                src={imageSrc}
+                alt={imageSrc}
               />
               <button className={styles.cameraEDIT}>
                 <IoCameraSharp />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className={styles.fileInput}
+                />
               </button>
             </div>
           </div>
@@ -99,38 +76,16 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
         <div className={styles.InsuranceInfoBodyBottom}>
           <div className={styles.BodyText}>
             <span>Company:</span>{" "}
-            <input
-              className={styles.inputField}
-              type="text"
-              name="name"
-              id="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
+            <input className={styles.inputField} type="text" name="" id="" />
           </div>
           <div className={styles.BodyText}>
             <span>Pricing:</span>{" "}
-            <input
-              className={styles.inputField}
-              type="text"
-              name="price"
-              id="price"
-              value={formData.price}
-              onChange={handleInputChange}
-            />
+            <input className={styles.inputField} type="text" name="" id="" />
           </div>
         </div>
       </div>
       <div className={styles.InsuranceInfoBottom}>
         <div className={styles.InsuranceInfoBottomDiv}>
-          <Button
-            buttonStyle={"buttonCustom2"}
-            type={"submit"}
-            icon={"delete"}
-            onClick={handleDeleteInsurance}
-          >
-            Delete
-          </Button>
           <div className={styles.InsuranceInfoBottomDivFlex}>
             <Button
               buttonStyle={"quaternaryBorder"}
@@ -155,8 +110,4 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
   );
 };
 
-export default AddEditInsuranceModal;
-
-AddEditInsuranceModal.propTypes = {
-  insuranceId: PropTypes.string.isRequired,
-};
+export default AddOnlyInsuranceModal;

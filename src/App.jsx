@@ -46,6 +46,10 @@ function App() {
           element: <Trips />,
         },
         {
+          path: "/trips/:bookingID",
+          element: <Trips />,
+        },
+        {
           path: "/profile",
           element: <Profile />,
         },

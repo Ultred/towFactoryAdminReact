@@ -3,8 +3,12 @@ import dropOffRedIcon from "../assets/dropOffred.svg";
 import pickUpBlueIcon from "../assets/pickUpblue.svg";
 import dateIcon from "../assets/date.svg";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { ModalStoreState } from "../context/ModalStoreState";
+import BookingInfoSoloModal from "./BookingInfoSoloModal";
 const CardDatas = ({
   data: {
+    id,
     status,
     trackingNo,
     user,
@@ -17,6 +21,8 @@ const CardDatas = ({
 }) => {
   let statusColorClass = "";
   let statusColorP = "";
+  const { openModal } = ModalStoreState();
+  const navigate = useNavigate();
   // Determine color based on status
   if (status && typeof status === "string") {
     // Determine color based on status
@@ -51,9 +57,18 @@ const CardDatas = ({
         statusColorP = "";
     }
   }
+
+  const handleViewDetailsBookSolo = () => {
+    navigate(`/trips/${id}`);
+    openModal(<BookingInfoSoloModal />);
+  };
+
   return (
     <div className={styles.cardDataContainer}>
-      <div className={`${styles.cardDataContainerTop} ${statusColorClass}`}>
+      <div
+        onClick={handleViewDetailsBookSolo}
+        className={`${styles.cardDataContainerTop} ${statusColorClass}`}
+      >
         <h2>
           TRACKING NUMBER: <span>{trackingNo}</span>
         </h2>

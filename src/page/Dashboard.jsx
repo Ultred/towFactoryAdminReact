@@ -21,6 +21,11 @@ const Dashboard = () => {
     queryFn: apiClient.getAllDrivers,
     refetchOnWindowFocus: false,
   });
+  const { data: intransitData, isLoading: transitIsLoading } = useQuery({
+    queryKey: ["intransitDataAll"],
+    queryFn: apiClient.getOnlyTransitBookingsPagination,
+    refetchOnWindowFocus: false,
+  });
 
   const filteredDriverData = (status) => {
     if (!driverDatas) return [];
@@ -52,7 +57,7 @@ const Dashboard = () => {
                 onClick={() => console.log(availableDrivers)}
                 className={styles.dataStylesh1}
               >
-                Hello, Admin Bruno!
+                Hello, Admin Aldrin!
               </h1>
               <p className={styles.dataStylesp}>
                 Welcome Again, We Have a good weather today
@@ -130,18 +135,18 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className={styles.slider}>
-              {transitData.map((data, index) => (
-                <div className={styles.transitData} key={index}>
+              {intransitData?.result?.map((data) => (
+                <div className={styles.transitData} key={data.id}>
                   <div className={styles.transitDataTop}>
                     <h2>
-                      Tracking Number: <span>{data.trackingNumber}</span>
+                      Tracking Number: <span>{data.trackingNo}</span>
                     </h2>
                   </div>
                   <div className={styles.transitDataBody}>
                     <p>
                       CLIENT:
                       <span className={styles.scheduleContainerBold}>
-                        {data.client}
+                        {data.user.firstName} {data.user.lastName}
                       </span>
                     </p>
                     <p>
@@ -153,7 +158,7 @@ const Dashboard = () => {
                     <p>
                       PLATE NUMBER:
                       <span className={styles.scheduleContainerBold}>
-                        {data.plateNumber}
+                        {data.plateNum}
                       </span>
                     </p>
                   </div>
@@ -165,7 +170,12 @@ const Dashboard = () => {
         <div className={styles.flexRight}>
           <div className={styles.dashboardContainerBg}>
             <div className={styles.flexJustify}>
-              <h2 className={styles.containerTitle}>Calendar</h2>
+              <h2
+                onClick={() => console.log(intransitData)}
+                className={styles.containerTitle}
+              >
+                Calendar
+              </h2>
               <p className={styles.containerViewAll}>View all</p>
             </div>
             <div>

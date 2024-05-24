@@ -24,7 +24,7 @@ const axiosConfig = () => {
 };
 
 const makeRequest = async (url, method, data) => {
-  console.log(data);
+  console.log("test", data);
 
   try {
     const config = axiosConfig();
@@ -66,19 +66,44 @@ export const getAllBookingsPagination = async ({ queryKey }) => {
   return makeRequest(`api/v1/bookings/all?page=${page}${statusQuery}`, "get");
 };
 
+export const getOnlyTransitBookingsPagination = async ({ queryKey }) => {
+  const page = queryKey[1];
+  return makeRequest("api/v1/bookings/all?status=In Transit", "get");
+};
+
+export const getSoloBookingById = async ({ queryKey }) => {
+  return makeRequest(`api/v1/bookings/${queryKey[1]}/list`, "get");
+};
+
 export const getAllDrivers = async () =>
   makeRequest("api/v1/drivers/all", "get");
-
-export const getAllInsurances = async () =>
-  makeRequest("api/v1/insurance/all", "get");
 
 export const getPendingBookings = async () =>
   makeRequest("api/v1/bookings/filter-by-pending", "get");
 
-export const putAssignDriverNotif = async ({ queryKey, formData }) => {
-  makeRequest(`api/v1/bookings/${queryKey[1]}/assign-driver`, "put", formData);
+export const putAssignDriverNotif = async ({ formData, mutationKey }) => {
+  return makeRequest(
+    `api/v1/bookings/${mutationKey[1]}/assign-driver`,
+    "put",
+    formData
+  );
 };
 
-export const getPendingBookingSolo = async ({ queryKey }) => {
+export const getPendingBookingSolo = async ({ queryKey }) =>
   makeRequest(`api/v1/bookings/${queryKey[1]}/list`);
-};
+
+//Insurance Crud
+export const getAllInsurances = async () =>
+  makeRequest("api/v1/insurance/all", "get");
+
+export const postCreateInsurance = async (data) =>
+  makeRequest("api/v1/insurance/create", "post", data);
+
+export const putEditInsurance = async ({ formData, mutationKey }) =>
+  makeRequest(`api/v1/insurance/${mutationKey[1]}/edit`, "put", formData);
+
+export const deleteInsurance = async ({ mutationKey }) =>
+  makeRequest(`api/v1/insurance/${mutationKey[1]}/delete`, "delete");
+
+export const getSoloInsurancebyID = async ({ queryKey }) =>
+  makeRequest(`api/v1/insurance/${queryKey[1]}/list`, "get");

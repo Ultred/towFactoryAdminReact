@@ -34,8 +34,16 @@
 .quaternary {
   background-color: var(--primary-color) !important;
   color: var(--white);
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+
   border-radius: 0.3rem;
+}
+.quaternaryBorder {
+  background-color: var(--primary-color) !important;
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--white);
 }
 .buttonCustom1 {
   background-color: var(--primary-color) !important;

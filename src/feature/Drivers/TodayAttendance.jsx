@@ -5,7 +5,6 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import DriverInfoModal from "./DriverInfoModal";
 import SortComponent from "../../components/SortComponent";
 import messageIcon from "../../assets/messagesIcon.svg";
-import callIcon from "../../assets/callIcon.svg";
 const TodayAttendance = () => {
   const { openModal } = ModalStoreState();
 
@@ -39,9 +38,6 @@ const TodayAttendance = () => {
               <div className={styles.flexButton}>
                 <button className={styles.buttonClick}>
                   <img src={messageIcon} alt="message" />
-                </button>
-                <button className={styles.buttonClick}>
-                  <img src={callIcon} alt="call" />
                 </button>
               </div>
             </div>

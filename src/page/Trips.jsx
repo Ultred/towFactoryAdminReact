@@ -9,7 +9,7 @@ import CardDatas from "../components/CardDatas";
 import useDebounce from "../hooks/useDebounce";
 import CardDataLoader from "../feature/loaders/CardDataLoader";
 
-const TripsNavbarSampleData = ["ALL", "In Transit", "CANCELLED", "DELIVERED"];
+const TripsNavbarSampleData = ["ALL", "In Transit", "Cancelled", "Delivered"];
 
 const Trips = () => {
   const [page, setPage] = useState(1);

@@ -49,9 +49,17 @@ const CardData = ({
     default:
       statusColorP = "";
   }
+
+  const handleViewDetailsBookingSolo = () => {
+    console.log("handleViewDetailsBookingSolo");
+  };
+
   return (
     <div className={styles.cardDataContainer}>
-      <div className={`${styles.cardDataContainerTop} ${statusColorClass}`}>
+      <div
+        onClick={handleViewDetailsBookingSolo}
+        className={`${styles.cardDataContainerTop} ${statusColorClass}`}
+      >
         <h2>
           TRACKING NUMBER: <span>{trackingNumber}</span>
         </h2>
