@@ -13,8 +13,10 @@ import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
 import * as apiClient from "../../service/ApiClient";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const BookingInfoModal = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { openModal, closeModal } = ModalStoreState();
   const { soloBookNotifValue, clearSoloBookNotifValue } =
     SaveNotifBookingSolo();
@@ -28,6 +30,7 @@ const BookingInfoModal = () => {
       toast.success("Booking In-transit");
       clearSoloBookNotifValue();
       closeModal();
+      navigate("/trips");
     },
     onError: (error) => {
       //console.log(error.message);
@@ -36,7 +39,8 @@ const BookingInfoModal = () => {
   });
 
   const handleBackModal = () => {
-    openModal(<AssignDriverModal />);
+    console.log(soloBookNotifValue);
+    //openModal(<AssignDriverModal />);
   };
 
   const handleNextDone = () => {
@@ -105,9 +109,6 @@ const BookingInfoModal = () => {
         </div>
         <div className={styles.flexButtonsContainer}>
           <button className={styles.bookingInfobutton}>
-            <img src={callIcon} alt="call" />
-          </button>
-          <button className={styles.bookingInfobutton}>
             <img src={trackIcon} alt="track" />
           </button>
         </div>
@@ -139,14 +140,19 @@ const BookingInfoModal = () => {
         </div>
         <div className={styles.bookingInfoBody4}>
           <h2 className={styles.textBlue}>Driver's Request</h2>
-          <ul className={styles.styleUlList}>
-            <li className={styles.styleLiList}>
-              <div className={styles.styleDivList}>
-                <p>Rollers</p> <span>1PC</span>
-              </div>
-              <span className={styles.fontBold}>P 1500</span>
-            </li>
-          </ul>
+          {soloBookNotifValue?.driversAddOns === null ? (
+            <p className="text-center py-4">No Add-ons</p>
+          ) : (
+            <ul className={styles.styleUlList}>
+              <li className={styles.styleLiList}>
+                <div className={styles.styleDivList}>
+                  <p>Rollers</p> <span>1PC</span>
+                </div>
+                <span className={styles.fontBold}>P 1500</span>
+              </li>
+            </ul>
+          )}
+
           <div className={styles.noteContainer}>
             <p>
               <span>NOTE:</span>

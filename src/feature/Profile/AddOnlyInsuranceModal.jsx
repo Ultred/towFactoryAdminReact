@@ -48,7 +48,7 @@ const AddOnlyInsuranceModal = () => {
             className="cursor-pointer"
             onClick={handleBackModal}
           />
-          Insurance List
+          Add Insurance
         </h2>
         <FaXmark className="cursor-pointer" onClick={handleCloseModalX} />
       </div>

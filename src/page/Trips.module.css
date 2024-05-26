@@ -1,3 +1,21 @@
 .tripsContainer {
   padding: var(--padding-container);
 }
+.buttonPagination {
+  max-width: 50rem;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto 1.5rem auto;
+}
+.buttonPagination button {
+  padding: 5px 5px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: #808080;
+  color: #fff;
+}
+
+.buttonPagination button:disabled {
+  opacity: 0.5; /* Example: reduce opacity for disabled buttons */
+  cursor: not-allowed; /* Show not-allowed cursor for disabled buttons */
+}

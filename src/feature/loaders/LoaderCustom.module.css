@@ -1,0 +1,49 @@
+.constLoader {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.hypnotic {
+  width: 28px;
+  height: 56px;
+  display: grid;
+  background: linear-gradient(#1c2cbc 0 0) top/100% 2.2px,
+    radial-gradient(
+        farthest-side at top,
+        #0000 calc(100% - 2.2px),
+        #1c2cbc calc(100% - 1.1px),
+        #0000
+      )
+      top,
+    linear-gradient(#1c2cbc 0 0) bottom/100% 2.2px,
+    radial-gradient(
+        farthest-side at bottom,
+        #0000 calc(100% - 2.2px),
+        #1c2cbc calc(100% - 1.1px),
+        #0000
+      )
+      bottom;
+  background-size: 100% 1.1px, 100% 50%;
+  background-repeat: no-repeat;
+  animation: hypnotic-k56gsf 4s infinite linear;
+}
+
+.hypnotic::before,
+.hypnotic::after {
+  content: "";
+  grid-area: 1/1;
+  background: inherit;
+  border: inherit;
+  animation: inherit;
+}
+
+.hypnotic::after {
+  animation-duration: 2s;
+}
+
+@keyframes hypnotic-k56gsf {
+  100% {
+    transform: rotate(1turn);
+  }
+}

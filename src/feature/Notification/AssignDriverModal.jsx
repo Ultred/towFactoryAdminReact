@@ -12,6 +12,7 @@ import * as apiClient from "../../service/ApiClient";
 import { useQuery } from "@tanstack/react-query";
 import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
 import toast from "react-hot-toast";
+import LoaderCustom from "../loaders/LoaderCustom";
 
 const AssignDriverModal = () => {
   const { openModal, closeModal } = ModalStoreState();
@@ -70,7 +71,7 @@ const AssignDriverModal = () => {
           <SortComponent />
         </div>
         {isLoading ? (
-          <p>Loading...</p>
+          <LoaderCustom />
         ) : (
           <div className={styles.slider}>
             {availableDrivers.map((data) => (

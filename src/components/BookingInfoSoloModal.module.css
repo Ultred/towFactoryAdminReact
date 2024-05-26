@@ -219,3 +219,16 @@
   /* Firefox */
   display: none;
 }
+
+.inTransit {
+  background-color: var(--status-orange);
+}
+.cancelled {
+  background-color: var(--red);
+}
+.delivered {
+  background-color: var(--status-green);
+}
+.recieved {
+  background-color: var(--primary-color);
+}

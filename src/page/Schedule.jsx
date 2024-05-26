@@ -2,6 +2,7 @@ import styles from "./Schedule.module.css";
 import SecondNavbar from "../components/SecondNavbar";
 import CardData from "../components/CardData";
 import { scheduleData } from "../utils/DataSample";
+import CarLoader from "../feature/loaders/LoaderCustom";
 const sampleDriverNavbarData = ["TODAY", "UPCOMING"];
 
 const Schedule = () => {

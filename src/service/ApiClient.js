@@ -1,6 +1,7 @@
 import axios from "axios";
 import useAuthStore from "../context/useAuthStore";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "react-hot-toast";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 const getUserId = () => {
@@ -43,9 +44,15 @@ const makeRequest = async (url, method, data) => {
 
     return response.data;
   } catch (error) {
-    if (error.response?.data?.message === "jwt expired") {
-      // Redirect to login page if JWT token expires
-      redirectToLogin();
+    if (
+      error.response?.data?.message === "jwt expired" ||
+      error.response?.data?.message === "jwt malformed"
+    ) {
+      toast.error("Session expired. Redirecting to login...");
+      setTimeout(() => {
+        console.log("redirecting");
+        redirectToLogin();
+      }, 2000); // Delay to allow the toast to be visible before redirecting
     }
     const customError = error;
     throw new Error(customError.response?.data?.message || "An error occurred");
@@ -74,9 +81,6 @@ export const getOnlyTransitBookingsPagination = async ({ queryKey }) => {
 export const getSoloBookingById = async ({ queryKey }) => {
   return makeRequest(`api/v1/bookings/${queryKey[1]}/list`, "get");
 };
-
-export const getAllDrivers = async () =>
-  makeRequest("api/v1/drivers/all", "get");
 
 export const getPendingBookings = async () =>
   makeRequest("api/v1/bookings/filter-by-pending", "get");
@@ -107,3 +111,11 @@ export const deleteInsurance = async ({ mutationKey }) =>
 
 export const getSoloInsurancebyID = async ({ queryKey }) =>
   makeRequest(`api/v1/insurance/${queryKey[1]}/list`, "get");
+
+//Driver
+
+export const getAllDrivers = async () =>
+  makeRequest("api/v1/drivers/all", "get");
+
+export const getSoloDriverbyID = async ({ queryKey }) =>
+  makeRequest(`api/v1/drivers/${queryKey[1]}/list`, "get");

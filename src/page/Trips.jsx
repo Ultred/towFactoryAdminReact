@@ -52,13 +52,12 @@ const Trips = () => {
   };
   return (
     <>
-      <p onClick={() => console.log(tripData)}>Test Me</p>
       <div className={styles.tripsContainer}>
         <SecondNavbar
           onItemClick={handleShowItemTrips}
           data={TripsNavbarSampleData}
         />
-        <div>
+        <div className={styles.buttonPagination}>
           <button
             className="border bg-slate-400"
             disabled={page === 1}

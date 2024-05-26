@@ -5,8 +5,6 @@ import styles from "./NotificationModal.module.css";
 import dropOffRed from "../../assets/dropOffred.svg";
 import pickupBlue from "../../assets/pickUpblue.svg";
 import RejectionNotifModal from "./RejectionNotifModal";
-import { useQuery } from "@tanstack/react-query";
-import * as apiClient from "../../service/ApiClient";
 import { SaveNotifBookingSolo } from "../../context/SaveNotifBookingState";
 const NoficationModal = () => {
   const { openModal } = ModalStoreState();
@@ -22,7 +20,6 @@ const NoficationModal = () => {
     <div className={styles.notificationModalContainer}>
       <div className={styles.notificationModalTop}>
         <h2 className={styles.notificationModalh2}>Booking</h2>
-        <p className={styles.notificationModalviewDetails}>View all Details</p>
       </div>
       <div className={styles.notificationModalData}>
         <p>

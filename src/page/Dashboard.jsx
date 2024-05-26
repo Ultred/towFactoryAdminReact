@@ -3,7 +3,6 @@ import Searchbar from "../components/Searchbar";
 import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { FaCloudSun } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
-import { transitData, driverData } from "../utils/DataSample";
 import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
@@ -14,10 +13,11 @@ import dropOffRed from "../assets/dropOffred.svg";
 import pickupBlue from "../assets/pickUpblue.svg";
 import { useQuery } from "@tanstack/react-query";
 import * as apiClient from "../service/ApiClient";
+import LoaderCustom from "../feature/loaders/LoaderCustom";
 const Dashboard = () => {
   //Code For Get filter Drivers
   const { data: driverDatas, isLoading } = useQuery({
-    queryKey: ["driverData"],
+    queryKey: ["driverDataAll"],
     queryFn: apiClient.getAllDrivers,
     refetchOnWindowFocus: false,
   });
@@ -135,35 +135,39 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className={styles.slider}>
-              {intransitData?.result?.map((data) => (
-                <div className={styles.transitData} key={data.id}>
-                  <div className={styles.transitDataTop}>
-                    <h2>
-                      Tracking Number: <span>{data.trackingNo}</span>
-                    </h2>
+              {transitIsLoading ? (
+                <LoaderCustom />
+              ) : (
+                intransitData?.result?.map((data) => (
+                  <div className={styles.transitData} key={data.id}>
+                    <div className={styles.transitDataTop}>
+                      <h2>
+                        Tracking Number: <span>{data.trackingNo}</span>
+                      </h2>
+                    </div>
+                    <div className={styles.transitDataBody}>
+                      <p>
+                        CLIENT:
+                        <span className={styles.scheduleContainerBold}>
+                          {data.user.firstName} {data.user.lastName}
+                        </span>
+                      </p>
+                      <p>
+                        MANUFACTURER:
+                        <span className={styles.scheduleContainerBold}>
+                          {data.manufacturer}
+                        </span>
+                      </p>
+                      <p>
+                        PLATE NUMBER:
+                        <span className={styles.scheduleContainerBold}>
+                          {data.plateNum}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                  <div className={styles.transitDataBody}>
-                    <p>
-                      CLIENT:
-                      <span className={styles.scheduleContainerBold}>
-                        {data.user.firstName} {data.user.lastName}
-                      </span>
-                    </p>
-                    <p>
-                      MANUFACTURER:
-                      <span className={styles.scheduleContainerBold}>
-                        {data.manufacturer}
-                      </span>
-                    </p>
-                    <p>
-                      PLATE NUMBER:
-                      <span className={styles.scheduleContainerBold}>
-                        {data.plateNum}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </div>

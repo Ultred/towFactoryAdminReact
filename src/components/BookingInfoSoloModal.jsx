@@ -27,9 +27,26 @@ const BookingInfoSoloModal = () => {
   const handleCloseModal = () => {
     closeModal();
   };
+  let statusColorClass = "";
+  switch (bookingSoloId?.booking?.status?.toUpperCase()) {
+    case "IN TRANSIT":
+      statusColorClass = styles.inTransit;
+      break;
+    case "CANCELLED":
+      statusColorClass = styles.cancelled;
+      break;
+    case "DELIVERED":
+      statusColorClass = styles.delivered;
+      break;
+    case "RECEIVED":
+      statusColorClass = styles.recieved;
+      break;
+    default:
+      statusColorClass = "";
+  }
+
   const handleTrackDriver = () => {
-    console.log("test");
-    console.log(bookingSoloId);
+    console.log(bookingSoloId.booking);
   };
 
   if (isError) {
@@ -41,7 +58,7 @@ const BookingInfoSoloModal = () => {
 
   return (
     <div className={styles.bookingInfocontainer}>
-      <div className={styles.bookingInfoTop}>
+      <div className={`${styles.bookingInfoTop} ${statusColorClass}`}>
         <h2 className={styles.bookingInfoToph2}>Booking Information</h2>
         <FaXmark onClick={handleCloseModal} />
       </div>
@@ -57,8 +74,13 @@ const BookingInfoSoloModal = () => {
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Driver:</h2>
               <p className={styles.fontMainbold}>
-                {bookingSoloId.booking?.driver?.firstName}{" "}
-                {bookingSoloId.booking?.driver?.lastName}
+                {bookingSoloId?.booking?.driver === null ? (
+                  <p>N/A</p>
+                ) : (
+                  bookingSoloId?.booking?.driver?.firstName +
+                  " " +
+                  bookingSoloId?.booking?.driver?.lastName
+                )}
               </p>
               {/* <select
                 className={`${styles.fontMainbold} ${styles.selectBg}`}
@@ -73,13 +95,21 @@ const BookingInfoSoloModal = () => {
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Phone:</h2>
               <p className={styles.fontMainbold}>
-                {bookingSoloId.booking?.driver?.phoneNumber}
+                {bookingSoloId?.booking?.driver === null ? (
+                  <p>N/A</p>
+                ) : (
+                  bookingSoloId?.booking?.driver?.phoneNumber
+                )}
               </p>
             </div>
             <div className={styles.flexInput}>
               <h2 className={styles.fontLight}>Plate Number:</h2>
               <p className={styles.fontMainbold}>
-                {bookingSoloId.booking?.driver?.plateNumber}
+                {bookingSoloId?.booking?.driver === null ? (
+                  <p>N/A</p>
+                ) : (
+                  bookingSoloId?.booking?.driver?.plateNumber
+                )}
               </p>
             </div>
           </div>
@@ -143,7 +173,7 @@ const BookingInfoSoloModal = () => {
         </div>
       </div>
 
-      <div className={styles.bookingInfobottom}>
+      <div className={`${styles.bookingInfobottom} ${statusColorClass}`}>
         <div className={styles.timeContainer}>
           <div className={styles.bottomFlex}>
             <h4 className={styles.fontLight3}>Arrival Time:</h4>

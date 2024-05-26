@@ -10,6 +10,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import * as apiClient from "../../service/ApiClient";
 import InsuranceModal from "./InsuranceModal";
 import { useQuery } from "@tanstack/react-query";
+import LoaderCustom from "../loaders/LoaderCustom";
 
 const AddEditInsuranceModal = ({ insuranceId }) => {
   const { closeModal, openModal } = ModalStoreState();
@@ -65,9 +66,6 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
   if (isError) {
     return <p>Error</p>;
   }
-  if (isLoading) {
-    return <p>Loading</p>;
-  }
 
   return (
     <div className={styles.InsuranceInfoContainer}>
@@ -77,50 +75,55 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
             className="cursor-pointer"
             onClick={handleBackModal}
           />
-          Insurance List
+          Edit Insurance
         </h2>
         <FaXmark className="cursor-pointer" onClick={handleCloseModalX} />
       </div>
-      <div className={styles.InsuranceInfoBody}>
-        <div className={styles.InsuranceInfoBodyTop}>
-          <div className={styles.borderInsuranceImg}>
-            <div className={styles.forPositionRelative}>
-              <img
-                className={styles.imgPicInsurance}
-                src={imgPicSample}
-                alt="Insurance Sample"
+      {isLoading ? (
+        <LoaderCustom />
+      ) : (
+        <div className={styles.InsuranceInfoBody}>
+          <div className={styles.InsuranceInfoBodyTop}>
+            <div className={styles.borderInsuranceImg}>
+              <div className={styles.forPositionRelative}>
+                <img
+                  className={styles.imgPicInsurance}
+                  src={imgPicSample}
+                  alt="Insurance Sample"
+                />
+                <button className={styles.cameraEDIT}>
+                  <IoCameraSharp />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.InsuranceInfoBodyBottom}>
+            <div className={styles.BodyText}>
+              <span>Company:</span>{" "}
+              <input
+                className={styles.inputField}
+                type="text"
+                name="name"
+                id="name"
+                value={formData.name}
+                onChange={handleInputChange}
               />
-              <button className={styles.cameraEDIT}>
-                <IoCameraSharp />
-              </button>
+            </div>
+            <div className={styles.BodyText}>
+              <span>Pricing:</span>{" "}
+              <input
+                className={styles.inputField}
+                type="text"
+                name="price"
+                id="price"
+                value={formData.price}
+                onChange={handleInputChange}
+              />
             </div>
           </div>
         </div>
-        <div className={styles.InsuranceInfoBodyBottom}>
-          <div className={styles.BodyText}>
-            <span>Company:</span>{" "}
-            <input
-              className={styles.inputField}
-              type="text"
-              name="name"
-              id="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className={styles.BodyText}>
-            <span>Pricing:</span>{" "}
-            <input
-              className={styles.inputField}
-              type="text"
-              name="price"
-              id="price"
-              value={formData.price}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-      </div>
+      )}
+
       <div className={styles.InsuranceInfoBottom}>
         <div className={styles.InsuranceInfoBottomDiv}>
           <Button

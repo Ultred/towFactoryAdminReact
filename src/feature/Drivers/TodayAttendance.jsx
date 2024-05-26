@@ -5,10 +5,19 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import DriverInfoModal from "./DriverInfoModal";
 import SortComponent from "../../components/SortComponent";
 import messageIcon from "../../assets/messagesIcon.svg";
+import { useQuery } from "@tanstack/react-query";
+import * as apiClient from "../../service/ApiClient";
 const TodayAttendance = () => {
   const { openModal } = ModalStoreState();
 
+  const { data: driverDataALL, isLoading } = useQuery({
+    queryKey: ["driverDataAll"],
+    queryFn: apiClient.getAllDrivers,
+    refetchOnWindowFocus: false,
+  });
+
   const handleDriverOpenModal = () => {
+    //console.log(driverDataALL?.result);
     openModal(<DriverInfoModal />);
   };
   return (
@@ -18,31 +27,35 @@ const TodayAttendance = () => {
         <SortComponent />
       </div>
       <div className={styles.containerDriverBody}>
-        {driverData.map((data) => {
-          return (
-            <div key={data.id} className={styles.containerDriverFlex}>
-              <div
-                onClick={handleDriverOpenModal}
-                className={styles.flexDriverPicandName}
-              >
-                <Avatar status={data.status} />
-                <div>
-                  <h2 className={styles.containerDriverPicandNameh2}>
-                    {data.name}
-                  </h2>
-                  <p className={styles.containerDriverPicandNameP}>
-                    {data.status}
-                  </p>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          driverDataALL?.result?.map((data) => {
+            return (
+              <div key={data.id} className={styles.containerDriverFlex}>
+                <div
+                  onClick={handleDriverOpenModal}
+                  className={styles.flexDriverPicandName}
+                >
+                  <Avatar status={data.status} />
+                  <div>
+                    <h2 className={styles.containerDriverPicandNameh2}>
+                      {data.firstName} {data.lastName}
+                    </h2>
+                    <p className={styles.containerDriverPicandNameP}>
+                      {data.status}
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.flexButton}>
+                  <button className={styles.buttonClick}>
+                    <img src={messageIcon} alt="message" />
+                  </button>
                 </div>
               </div>
-              <div className={styles.flexButton}>
-                <button className={styles.buttonClick}>
-                  <img src={messageIcon} alt="message" />
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

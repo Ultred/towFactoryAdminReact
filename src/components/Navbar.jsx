@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "../components/Navbar.module.css";
 import profileIcon from "../assets/profile-icon.png";
 import logoIcon from "../assets/towfactoryLogo.svg";
@@ -8,11 +8,12 @@ import { useQuery } from "@tanstack/react-query";
 import bellIcon from "../assets/bell.svg";
 import * as apiClient from "../service/ApiClient";
 import { useEffect, useState } from "react";
-import NoBookingFound from "../feature/Notification/NoBookingFound";
 import { SaveNotifBookingSolo } from "../context/SaveNotifBookingState";
+import NoNotificationFound from "../feature/Notification/NoNotificationFound";
 
 const Navbar = () => {
   const { openModal } = ModalStoreState();
+  const navigate = useNavigate();
   const { soloBookNotifValue, setSoloBookNotifValue } = SaveNotifBookingSolo();
   const [hasNewNotification, setHasNewNotification] = useState(false);
   const { data: notif, isFetching } = useQuery({
@@ -36,10 +37,13 @@ const Navbar = () => {
       //console.log(soloBookNotifValue);
       openModal(<NoficationModal />);
     } else {
-      openModal(<NoBookingFound />);
+      openModal(<NoNotificationFound />);
     }
   };
-
+  const handleClickLogoMain = () => {
+    playNotificationSound();
+    navigate("/dashboard");
+  };
   useEffect(() => {
     if (notif && notif.result && notif.result.length > 0) {
       playNotificationSound();
@@ -53,7 +57,7 @@ const Navbar = () => {
     <>
       <nav className={styles.navbar}>
         <img
-          onClick={playNotificationSound}
+          onClick={handleClickLogoMain}
           className={styles.imgLogo}
           src={logoIcon}
           alt="Logo"
