@@ -49,10 +49,7 @@ const makeRequest = async (url, method, data) => {
       error.response?.data?.message === "jwt malformed"
     ) {
       toast.error("Session expired. Redirecting to login...");
-      setTimeout(() => {
-        console.log("redirecting");
-        redirectToLogin();
-      }, 2000); // Delay to allow the toast to be visible before redirecting
+      redirectToLogin();
     }
     const customError = error;
     throw new Error(customError.response?.data?.message || "An error occurred");
