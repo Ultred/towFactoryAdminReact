@@ -64,11 +64,11 @@ const CardDatas = ({
   };
 
   return (
-    <div className={styles.cardDataContainer}>
-      <div
-        onClick={handleViewDetailsBookSolo}
-        className={`${styles.cardDataContainerTop} ${statusColorClass}`}
-      >
+    <div
+      onClick={handleViewDetailsBookSolo}
+      className={styles.cardDataContainer}
+    >
+      <div className={`${styles.cardDataContainerTop} ${statusColorClass}`}>
         <h2>
           TRACKING NUMBER: <span>{trackingNo}</span>
         </h2>

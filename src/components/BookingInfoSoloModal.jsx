@@ -11,10 +11,11 @@ import * as apiClient from "../service/ApiClient";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ModalStoreState } from "../context/ModalStoreState";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoaderCustom from "../feature/loaders/LoaderCustom";
 const BookingInfoSoloModal = () => {
   const { openModal, closeModal } = ModalStoreState();
+  const navigate = useNavigate();
   const { bookingID } = useParams();
   const {
     data: bookingSoloId,
@@ -47,7 +48,8 @@ const BookingInfoSoloModal = () => {
   }
 
   const handleTrackDriver = () => {
-    console.log(bookingSoloId.booking);
+    navigate("/trackBooking");
+    closeModal();
   };
 
   if (isError) {
@@ -116,9 +118,14 @@ const BookingInfoSoloModal = () => {
           </div>
         </div>
         <div className={styles.flexButtonsContainer}>
-          <button className={styles.bookingInfobutton}>
-            <img src={trackIcon} alt="track" />
-          </button>
+          {bookingSoloId?.booking?.status?.toUpperCase() === "IN TRANSIT" && (
+            <button
+              onClick={handleTrackDriver}
+              className={styles.bookingInfobutton}
+            >
+              <img src={trackIcon} alt="track" />
+            </button>
+          )}
         </div>
       </div>
       <div className={styles.slider}>
@@ -191,12 +198,14 @@ const BookingInfoSoloModal = () => {
             <span>P {bookingSoloId.booking?.totalAmount}</span>
           </div>
           <div className={styles.bottomFlex}>
-            <button
-              onClick={handleTrackDriver}
-              className={`${styles.buttonCircle} ${styles.buttonCircleCheck}`}
-            >
-              <IoMdLocate /> Track
-            </button>
+            {bookingSoloId?.booking?.status?.toUpperCase() === "IN TRANSIT" && (
+              <button
+                onClick={handleTrackDriver}
+                className={`${styles.buttonCircle} ${styles.buttonCircleCheck}`}
+              >
+                <IoMdLocate /> Track
+              </button>
+            )}
           </div>
         </div>
       </div>

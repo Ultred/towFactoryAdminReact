@@ -12,6 +12,10 @@ import Profile from "./page/Profile";
 
 //Layout
 import AppLayout from "./layout/AppLayout";
+import TrackDriverLayout from "./layout/TrackDriverLayout";
+
+//Feature
+import OutletDriverInfo from "./feature/TrackDriver/OutletDriverInfo";
 
 //ProtectedRoute
 
@@ -52,6 +56,16 @@ function App() {
         {
           path: "/profile",
           element: <Profile />,
+        },
+      ],
+    },
+    {
+      path: "/trackBooking",
+      element: <TrackDriverLayout />,
+      children: [
+        {
+          path: "/trackBooking",
+          element: <OutletDriverInfo />,
         },
       ],
     },
