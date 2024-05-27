@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ModalStoreState } from "../context/ModalStoreState";
 import { useParams } from "react-router-dom";
+import LoaderCustom from "../feature/loaders/LoaderCustom";
 const BookingInfoSoloModal = () => {
   const { openModal, closeModal } = ModalStoreState();
   const { bookingID } = useParams();
@@ -53,7 +54,7 @@ const BookingInfoSoloModal = () => {
     return <p>Error</p>;
   }
   if (isLoading) {
-    return <p>Loading..</p>;
+    return <LoaderCustom />;
   }
 
   return (
