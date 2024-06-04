@@ -100,14 +100,17 @@ export const getPendingBookingSolo = async ({ queryKey }) =>
 export const getAllInsurances = async () =>
   makeRequest("api/v1/insurance/all", "get");
 
-export const postCreateInsurance = async (data) =>
+export const postCreateInsurance = async (data) => {
+  console.log(data);
   makeRequest("api/v1/insurance/create", "post", data);
+};
 
 export const putEditInsurance = async ({ formData, mutationKey }) =>
   makeRequest(`api/v1/insurance/${mutationKey[1]}/edit`, "put", formData);
 
-export const deleteInsurance = async ({ mutationKey }) =>
+export const deleteInsurance = async ({ mutationKey }) => {
   makeRequest(`api/v1/insurance/${mutationKey[1]}/delete`, "delete");
+};
 
 export const getSoloInsurancebyID = async ({ queryKey }) =>
   makeRequest(`api/v1/insurance/${queryKey[1]}/list`, "get");

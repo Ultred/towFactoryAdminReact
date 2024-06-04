@@ -9,8 +9,9 @@ import Button from "../../components/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import * as apiClient from "../../service/ApiClient";
 import InsuranceModal from "./InsuranceModal";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import LoaderCustom from "../loaders/LoaderCustom";
+import toast from "react-hot-toast";
 
 const AddEditInsuranceModal = ({ insuranceId }) => {
   const { closeModal, openModal } = ModalStoreState();
@@ -22,6 +23,17 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
     queryKey: ["insuranceSolo", insuranceId],
     queryFn: apiClient.getSoloInsurancebyID,
     refetchOnWindowFocus: false,
+  });
+
+  const { mutate: deleteInsuranceMutate } = useMutation({
+    mutationFn: apiClient.deleteInsurance,
+    onSuccess: () => {
+      toast.success("Insurance deleted successfully");
+      closeModal();
+    },
+    onError: () => {
+      toast.error("Something went wrong. Please try again");
+    },
   });
 
   // Initialize form data with empty strings
@@ -44,7 +56,9 @@ const AddEditInsuranceModal = ({ insuranceId }) => {
     openModal(<InsuranceModal />);
   };
 
-  const handleDeleteInsurance = () => {};
+  const handleDeleteInsurance = () => {
+    deleteInsuranceMutate({ mutationKey: ["deleteInsurance", insuranceId] });
+  };
 
   const handleCloseModalX = () => {
     closeModal();
